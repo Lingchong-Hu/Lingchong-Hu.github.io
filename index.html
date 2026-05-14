@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lingchong Hu — Founder, Iterant AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #2d2d2d;
+    --paper: #f5f1ea;
+    --paper-warm: #ebe5d9;
+    --rule: #d4cbb8;
+    --muted: #6b6357;
+    --accent: #c1440e;          /* burnt sienna */
+    --accent-soft: rgba(193, 68, 14, 0.08);
+    --serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+    --sans: 'Inter Tight', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* subtle paper grain */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,0.015) 1px, transparent 1px),
+      radial-gradient(circle at 70% 70%, rgba(0,0,0,0.015) 1px, transparent 1px);
+    background-size: 3px 3px, 5px 5px;
+    opacity: 0.6;
+    mix-blend-mode: multiply;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ========= TOP BAR ========= */
+  .topbar {
+    padding: 32px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .topbar .mark {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .topbar nav a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 28px;
+    transition: color 0.2s;
+  }
+
+  .topbar nav a:hover { color: var(--accent); }
+
+  /* ========= HERO ========= */
+  .hero {
+    padding: 140px 0 120px;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease-out 0.2s forwards;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(48px, 7vw, 92px);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+    max-width: 14ch;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 0.4s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 56px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 0.7s forwards;
+  }
+
+  .hero-meta-item {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-meta-item .label {
+    color: var(--muted);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+  }
+
+  .hero-meta-item .value {
+    color: var(--ink);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ========= SECTION FRAME ========= */
+  section.block {
+    padding: 100px 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  .section-header {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+    align-items: baseline;
+  }
+
+  .section-number {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    max-width: 18ch;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  /* ========= PRINCIPLES ========= */
+  .principles {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+  }
+
+  .principles-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .principle {
+    padding: 36px 0;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 32px;
+    align-items: start;
+    transition: background 0.3s ease;
+  }
+
+  .principle:first-child { border-top: none; padding-top: 0; }
+  .principle:last-child { padding-bottom: 0; }
+
+  .principle:hover {
+    background: var(--accent-soft);
+    margin: 0 -24px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .principle:first-child:hover { padding-top: 24px; margin-top: -24px; }
+
+  .principle-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    padding-top: 8px;
+  }
+
+  .principle-title {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  .principle-title em { font-style: italic; }
+
+  .principle-body {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+
+  /* ========= NOW BLOCK ========= */
+  .now-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+  }
+
+  .now-content {
+    max-width: 65ch;
+  }
+
+  .now-lede {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 300;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    margin-bottom: 36px;
+    color: var(--ink);
+  }
+
+  .now-lede em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .now-content p {
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+
+  .now-tags {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 6px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+  }
+
+  /* ========= EXPERIENCE ========= */
+  .experience-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 48px;
+    padding: 40px 0;
+    border-top: 1px solid var(--rule);
+    align-items: start;
+  }
+
+  .exp-item:first-child { border-top: none; padding-top: 0; }
+  .exp-item:last-child { padding-bottom: 0; }
+
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    padding-top: 6px;
+  }
+
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.25;
+    margin-bottom: 4px;
+  }
+
+  .exp-org {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+
+  .exp-body {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+
+  .exp-note {
+    margin-top: 14px;
+    padding-left: 18px;
+    border-left: 2px solid var(--accent);
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 56ch;
+  }
+
+  /* ========= CONTACT ========= */
+  .contact {
+    padding: 140px 0 120px;
+    border-top: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 48px;
+  }
+
+  .contact-lede {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 56px;
+    max-width: 16ch;
+  }
+
+  .contact-lede em { font-style: italic; color: var(--accent); }
+
+  .contact-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+    max-width: 800px;
+  }
+
+  .contact-link {
+    text-decoration: none;
+    color: var(--ink);
+    padding: 24px 0;
+    border-top: 1px solid var(--ink);
+    display: block;
+    transition: color 0.2s, padding-left 0.3s ease;
+  }
+
+  .contact-link:hover {
+    color: var(--accent);
+    padding-left: 8px;
+  }
+
+  .contact-link .ch-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .contact-link .ch-value {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .contact-link:hover .ch-label { color: var(--accent); }
+
+  /* ========= FOOTER ========= */
+  footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ========= RESPONSIVE ========= */
+  @media (max-width: 768px) {
+    .container { padding: 0 24px; }
+    .hero { padding: 80px 0 80px; }
+    .hero-meta { gap: 32px; }
+    section.block { padding: 64px 0; }
+    .section-header,
+    .principles,
+    .now-grid,
+    .experience-grid,
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .section-header { margin-bottom: 40px; }
+    .principle { grid-template-columns: 1fr; gap: 12px; }
+    .exp-item { grid-template-columns: 1fr; gap: 16px; }
+    .topbar nav a { margin-left: 16px; }
+    .topbar nav a:first-child { display: none; }
+    .contact { padding: 80px 0; }
+    footer { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="mark">Lingchong Hu · 胡凌冲</div>
+    <nav>
+      <a href="#principles">Principles</a>
+      <a href="#now">Now</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Founder · Builder · Philadelphia</div>
+    <h1>I build at the <em>seams</em> of intent and software.</h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="label">Currently</span>
+        <span class="value">Founder, Iterant AI</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Trained at</span>
+        <span class="value">Penn — MCIT '25</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Working in</span>
+        <span class="value">EN · 中文</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Based in</span>
+        <span class="value">Philadelphia, PA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section class="block" id="principles">
+    <div class="section-header">
+      <div class="section-number">01 — Operating Principles</div>
+      <h2 class="section-title">How I think about <em>building</em>.</h2>
+    </div>
+
+    <div class="principles">
+      <div></div>
+      <div class="principles-list">
+
+        <div class="principle">
+          <div class="principle-num">i.</div>
+          <div>
+            <h3 class="principle-title">Build <em>next-step</em> products, not end-game ones.</h3>
+            <p class="principle-body">The fastest AI value comes from inserting capability into workflows people already inhabit — not from asking them to learn new behavior for a paradigm shift that hasn't earned trust yet. Meet users where their hands already are.</p>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-num">ii.</div>
+          <div>
+            <h3 class="principle-title">Pick a <em>moat</em>, not a feature.</h3>
+            <p class="principle-body">Grammar correction, autocomplete, and summarization are commodities. Durable advantage lives one layer below: deeper context capture, proprietary behavioral data, or a system-layer position competitors can't reach without rebuilding the stack.</p>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-num">iii.</div>
+          <div>
+            <h3 class="principle-title">The <em>market research</em> tax is non-negotiable.</h3>
+            <p class="principle-body">Skip it once and you pay it back later, with interest. Build a product on top of an audience that doesn't exist on the platform you chose, and no amount of execution will rescue the thesis. I've shipped this mistake. I won't ship it again.</p>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-num">iv.</div>
+          <div>
+            <h3 class="principle-title">A <em>post-mortem</em> is owed in writing.</h3>
+            <p class="principle-body">When something doesn't work, name the failure modes specifically — pricing model, beachhead miss, organizational risk, mental-model mismatch. Vague regret teaches no one. The next venture is funded by the lessons of the last.</p>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-num">v.</div>
+          <div>
+            <h3 class="principle-title">Co-founder <em>commitment</em> is an asset class.</h3>
+            <p class="principle-body">Research-project mode and paid-obligation mode produce different companies. The job of early capital isn't growth — it's converting talented friends into a team with skin in the same game, on the same clock.</p>
+          </div>
+        </div>
+
+        <div class="principle">
+          <div class="principle-num">vi.</div>
+          <div>
+            <h3 class="principle-title">Set the <em>exit trigger</em> before you need it.</h3>
+            <p class="principle-body">Founders fail by inertia more often than by bad luck. Decide in advance — in writing — what condition flips Plan A to Plan B to Plan C, and on what date. Future-you, mid-crisis, will not be the one to make that call cleanly.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- NOW -->
+  <section class="block" id="now">
+    <div class="section-header">
+      <div class="section-number">02 — What I'm doing now</div>
+      <h2 class="section-title">Iterant AI — <em>founding</em>.</h2>
+    </div>
+
+    <div class="now-grid">
+      <div></div>
+      <div class="now-content">
+        <p class="now-lede">A Delaware C-Corp, three engineering co-founders, and a single conviction: <em>the input layer is the most under-built surface in AI.</em></p>
+        <p>The thesis is structural. Every assistant lives downstream of an intent the user has already half-formed; almost no product is paying attention to that moment. The leverage is upstream.</p>
+        <p>The current build is a Chrome extension — a deliberate choice over a native input method, because the semantic context available in the DOM is richer than what an OS-level IME can see. The cost is platform constraint; the trade is depth.</p>
+        <p>Operating in research-project mode for now, with a near-term friends round scoped to convert that into a real operating cadence. Knowing the difference matters.</p>
+
+        <div class="now-tags">
+          <span class="tag">Founder / CEO</span>
+          <span class="tag">Delaware C-Corp</span>
+          <span class="tag">Pre-seed</span>
+          <span class="tag">Chrome Extension</span>
+          <span class="tag">Intent Layer</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="block" id="work">
+    <div class="section-header">
+      <div class="section-number">03 — Selected work</div>
+      <h2 class="section-title">A short, <em>honest</em> ledger.</h2>
+    </div>
+
+    <div class="experience-grid">
+      <div></div>
+      <div class="timeline">
+
+        <div class="exp-item">
+          <div class="exp-period">2025 — now</div>
+          <div>
+            <h3 class="exp-role">Founder & CEO</h3>
+            <p class="exp-org">Iterant AI, Inc. — Delaware</p>
+            <p class="exp-body">Incorporated the company, recruited the engineering team, set product architecture, and own the intent-classification system design. The work is moving from research mode to operating mode.</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-period">2024 — 25</div>
+          <div>
+            <h3 class="exp-role">Marketing Lead (informal)</h3>
+            <p class="exp-org">KeploreAI</p>
+            <p class="exp-body">Brought high-value connections from the Chinese automotive sector — Geely VP, Lotus CEO, a Yaoguang Tech case study — and recommended verticalizing around that beachhead. The recommendation wasn't taken.</p>
+            <p class="exp-note">Lesson taken forward: a SaaS pricing model layered onto deep-tech B2B can produce negative unit economics for a year before the math is visible. Pricing is strategy, not a knob.</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-period">2023 — 25</div>
+          <div>
+            <h3 class="exp-role">MCIT, Computer & Information Technology</h3>
+            <p class="exp-org">University of Pennsylvania</p>
+            <p class="exp-body">Coursework across databases, AI, and big-data analytics — including CIS 5500, CIS 521, CIS 5450. STEM-designated; the formal training I needed to stop being a "non-technical founder" in any conversation that mattered.</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-period">earlier</div>
+          <div>
+            <h3 class="exp-role">COO — Esports Scouting Venture</h3>
+            <p class="exp-org">Independent project</p>
+            <p class="exp-body">Built the operating thesis for an AI-driven talent-discovery model across CS2 / Valorant / MOBA, including investor mapping (BITKRAFT, Griffin, Makers Fund, a16z Games) and a tournament-driven brand strategy.</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-period">earlier</div>
+          <div>
+            <h3 class="exp-role">Solo project — Zhihu Radar</h3>
+            <p class="exp-org">Information aggregation for study-abroad audiences</p>
+            <p class="exp-body">Shipped a product to an audience that — it turned out — barely existed on the platform I had chosen. The product was fine. The thesis wasn't.</p>
+            <p class="exp-note">The single most expensive lesson I've taken from a shipped project: do the market and data work <em>before</em> the build, not as a postscript to it.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="section-number">04 — Get in touch</div>
+      <div>
+        <h2 class="contact-lede">If something here <em>resonates</em>, send a note.</h2>
+
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:hulingchong302@gmail.com">
+            <span class="ch-label">Email</span>
+            <span class="ch-value">hulingchong302@gmail.com →</span>
+          </a>
+          <a class="contact-link" href="https://www.linkedin.com/in/lingchong-hu" target="_blank" rel="noopener">
+            <span class="ch-label">LinkedIn</span>
+            <span class="ch-value">/in/lingchong-hu →</span>
+          </a>
+          <a class="contact-link" href="https://github.com/Lingchong-Hu" target="_blank" rel="noopener">
+            <span class="ch-label">GitHub</span>
+            <span class="ch-value">@Lingchong-Hu →</span>
+          </a>
+          <a class="contact-link" href="mailto:hulingchong302@gmail.com?subject=Iterant%20%E2%80%94%20Intro">
+            <span class="ch-label">Pitch / Investors</span>
+            <span class="ch-value">Open to intros →</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <footer>
+    <span>© 2026 Lingchong Hu · Philadelphia</span>
+    <span>Set in Fraunces & Inter Tight</span>
+  </footer>
+</div>
+
+</body>
+</html>
