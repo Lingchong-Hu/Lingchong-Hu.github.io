@@ -211,7 +211,7 @@
     background: var(--accent);
   }
 
-  .hero h1 {
+  .hero-headline {
     font-family: var(--serif);
     font-weight: 300;
     font-size: clamp(48px, 7vw, 92px);
@@ -223,9 +223,9 @@
     animation: fadeUp 1s ease-out 0.4s forwards;
   }
 
-  html[lang^="zh"] .hero h1 { max-width: 16ch; line-height: 1.15; }
+  html[lang^="zh"] .hero-headline { max-width: 16ch; line-height: 1.15; }
 
-  .hero h1 em {
+  .hero-headline em {
     font-style: italic;
     font-weight: 400;
     color: var(--accent);
@@ -606,8 +606,8 @@
   <header class="topbar">
     <div class="mark">Lingchong Hu · 胡凌冲</div>
     <nav>
+      <a href="/about/" data-i18n="nav.about">About</a>
       <a href="#principles" data-i18n="nav.principles">Principles</a>
-      <a href="#now" data-i18n="nav.now">Now</a>
       <a href="#work" data-i18n="nav.work">Work</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
       <span class="lang-toggle" role="group" aria-label="Language">
@@ -619,8 +619,8 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-eyebrow" data-i18n="hero.eyebrow">Founder · Builder · Philadelphia</div>
-    <h1 data-i18n="hero.h1">I build at the <em>seams</em> of intent and software.</h1>
+    <h1 class="hero-eyebrow" data-i18n="hero.eyebrow">Lingchong Hu — Founder · Builder · Philadelphia</h1>
+    <h2 class="hero-headline" data-i18n="hero.h1">I build at the <em>seams</em> of intent and software.</h2>
     <div class="hero-meta">
       <div class="hero-meta-item">
         <span class="label" data-i18n="hero.currently.label">Currently</span>
@@ -840,14 +840,15 @@
       zh: "胡凌冲 — Iterant AI 创始人"
     },
 
+    'nav.about':      { en: 'About',      zh: '关于' },
     'nav.principles': { en: 'Principles', zh: '理念' },
     'nav.now':        { en: 'Now',        zh: '当下' },
     'nav.work':       { en: 'Work',       zh: '履历' },
     'nav.contact':    { en: 'Contact',    zh: '联系' },
 
     'hero.eyebrow': {
-      en: 'Founder · Builder · Philadelphia',
-      zh: '创始人 · 建造者 · 费城'
+      en: 'Lingchong Hu — Founder · Builder · Philadelphia',
+      zh: '胡凌冲 — 创始人 · 建造者 · 费城'
     },
     'hero.h1': {
       en: 'I build at the <em>seams</em> of intent and software.',
