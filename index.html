@@ -58,7 +58,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #1a1a1a;
@@ -70,8 +70,24 @@
     --accent: #c1440e;          /* burnt sienna */
     --accent-soft: rgba(193, 68, 14, 0.08);
     --serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+    --serif-cn: 'Fraunces', 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
     --sans: 'Inter Tight', -apple-system, sans-serif;
     --mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+
+  html[lang^="zh"] body { font-family: var(--serif-cn); }
+  html[lang^="zh"] .hero h1,
+  html[lang^="zh"] .section-title,
+  html[lang^="zh"] .principle-title,
+  html[lang^="zh"] .now-lede,
+  html[lang^="zh"] .contact-lede,
+  html[lang^="zh"] .exp-role,
+  html[lang^="zh"] .exp-org,
+  html[lang^="zh"] .exp-body,
+  html[lang^="zh"] .exp-note,
+  html[lang^="zh"] .principle-body,
+  html[lang^="zh"] .now-content p {
+    font-family: var(--serif-cn);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -130,6 +146,11 @@
     font-weight: 500;
   }
 
+  .topbar nav {
+    display: flex;
+    align-items: baseline;
+  }
+
   .topbar nav a {
     color: var(--muted);
     text-decoration: none;
@@ -138,6 +159,30 @@
   }
 
   .topbar nav a:hover { color: var(--accent); }
+
+  .lang-toggle {
+    margin-left: 28px;
+    padding-left: 20px;
+    border-left: 1px solid var(--rule);
+    display: inline-flex;
+    gap: 10px;
+  }
+
+  .lang-toggle button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  .lang-toggle button:hover { color: var(--accent); }
+  .lang-toggle button.active { color: var(--ink); font-weight: 500; }
 
   /* ========= HERO ========= */
   .hero {
@@ -177,6 +222,8 @@
     opacity: 0;
     animation: fadeUp 1s ease-out 0.4s forwards;
   }
+
+  html[lang^="zh"] .hero h1 { max-width: 16ch; line-height: 1.15; }
 
   .hero h1 em {
     font-style: italic;
@@ -247,6 +294,8 @@
     max-width: 18ch;
   }
 
+  html[lang^="zh"] .section-title { line-height: 1.25; }
+
   .section-title em {
     font-style: italic;
     color: var(--accent);
@@ -303,6 +352,8 @@
     margin-bottom: 12px;
   }
 
+  html[lang^="zh"] .principle-title { line-height: 1.4; }
+
   .principle-title em { font-style: italic; }
 
   .principle-body {
@@ -312,6 +363,8 @@
     color: var(--ink-soft);
     max-width: 62ch;
   }
+
+  html[lang^="zh"] .principle-body { line-height: 1.8; }
 
   /* ========= NOW BLOCK ========= */
   .now-grid {
@@ -334,6 +387,8 @@
     color: var(--ink);
   }
 
+  html[lang^="zh"] .now-lede { line-height: 1.5; }
+
   .now-lede em {
     font-style: italic;
     color: var(--accent);
@@ -346,6 +401,8 @@
     color: var(--ink-soft);
     margin-bottom: 20px;
   }
+
+  html[lang^="zh"] .now-content p { line-height: 1.85; }
 
   .now-tags {
     margin-top: 40px;
@@ -422,6 +479,8 @@
     max-width: 60ch;
   }
 
+  html[lang^="zh"] .exp-body { line-height: 1.85; }
+
   .exp-note {
     margin-top: 14px;
     padding-left: 18px;
@@ -456,6 +515,8 @@
     margin-bottom: 56px;
     max-width: 16ch;
   }
+
+  html[lang^="zh"] .contact-lede { line-height: 1.3; }
 
   .contact-lede em { font-style: italic; color: var(--accent); }
 
@@ -531,6 +592,7 @@
     .exp-item { grid-template-columns: 1fr; gap: 16px; }
     .topbar nav a { margin-left: 16px; }
     .topbar nav a:first-child { display: none; }
+    .lang-toggle { margin-left: 16px; padding-left: 12px; gap: 8px; }
     .contact { padding: 80px 0; }
     footer { flex-direction: column; gap: 12px; }
   }
@@ -544,33 +606,37 @@
   <header class="topbar">
     <div class="mark">Lingchong Hu · 胡凌冲</div>
     <nav>
-      <a href="#principles">Principles</a>
-      <a href="#now">Now</a>
-      <a href="#work">Work</a>
-      <a href="#contact">Contact</a>
+      <a href="#principles" data-i18n="nav.principles">Principles</a>
+      <a href="#now" data-i18n="nav.now">Now</a>
+      <a href="#work" data-i18n="nav.work">Work</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <span class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="en">EN</button>
+        <button type="button" data-lang-btn="zh">中文</button>
+      </span>
     </nav>
   </header>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-eyebrow">Founder · Builder · Philadelphia</div>
-    <h1>I build at the <em>seams</em> of intent and software.</h1>
+    <div class="hero-eyebrow" data-i18n="hero.eyebrow">Founder · Builder · Philadelphia</div>
+    <h1 data-i18n="hero.h1">I build at the <em>seams</em> of intent and software.</h1>
     <div class="hero-meta">
       <div class="hero-meta-item">
-        <span class="label">Currently</span>
-        <span class="value">Founder, Iterant AI</span>
+        <span class="label" data-i18n="hero.currently.label">Currently</span>
+        <span class="value" data-i18n="hero.currently.value">Founder, Iterant AI</span>
       </div>
       <div class="hero-meta-item">
-        <span class="label">Trained at</span>
-        <span class="value">Penn — MCIT '25</span>
+        <span class="label" data-i18n="hero.trained.label">Trained at</span>
+        <span class="value" data-i18n="hero.trained.value">Penn — MCIT '25</span>
       </div>
       <div class="hero-meta-item">
-        <span class="label">Working in</span>
+        <span class="label" data-i18n="hero.langs.label">Working in</span>
         <span class="value">EN · 中文</span>
       </div>
       <div class="hero-meta-item">
-        <span class="label">Based in</span>
-        <span class="value">Philadelphia, PA</span>
+        <span class="label" data-i18n="hero.based.label">Based in</span>
+        <span class="value" data-i18n="hero.based.value">Philadelphia, PA</span>
       </div>
     </div>
   </section>
@@ -578,8 +644,8 @@
   <!-- PRINCIPLES -->
   <section class="block" id="principles">
     <div class="section-header">
-      <div class="section-number">01 — Operating Principles</div>
-      <h2 class="section-title">How I think about <em>building</em>.</h2>
+      <div class="section-number" data-i18n="sec.01.number">01 — Operating Principles</div>
+      <h2 class="section-title" data-i18n="sec.01.title">How I think about <em>building</em>.</h2>
     </div>
 
     <div class="principles">
@@ -589,48 +655,48 @@
         <div class="principle">
           <div class="principle-num">i.</div>
           <div>
-            <h3 class="principle-title">Build <em>next-step</em> products, not end-game ones.</h3>
-            <p class="principle-body">The fastest AI value comes from inserting capability into workflows people already inhabit — not from asking them to learn new behavior for a paradigm shift that hasn't earned trust yet. Meet users where their hands already are.</p>
+            <h3 class="principle-title" data-i18n="p.1.title">Build <em>next-step</em> products, not end-game ones.</h3>
+            <p class="principle-body" data-i18n="p.1.body">The fastest AI value comes from inserting capability into workflows people already inhabit — not from asking them to learn new behavior for a paradigm shift that hasn't earned trust yet. Meet users where their hands already are.</p>
           </div>
         </div>
 
         <div class="principle">
           <div class="principle-num">ii.</div>
           <div>
-            <h3 class="principle-title">Pick a <em>moat</em>, not a feature.</h3>
-            <p class="principle-body">Grammar correction, autocomplete, and summarization are commodities. Durable advantage lives one layer below: deeper context capture, proprietary behavioral data, or a system-layer position competitors can't reach without rebuilding the stack.</p>
+            <h3 class="principle-title" data-i18n="p.2.title">Pick a <em>moat</em>, not a feature.</h3>
+            <p class="principle-body" data-i18n="p.2.body">Grammar correction, autocomplete, and summarization are commodities. Durable advantage lives one layer below: deeper context capture, proprietary behavioral data, or a system-layer position competitors can't reach without rebuilding the stack.</p>
           </div>
         </div>
 
         <div class="principle">
           <div class="principle-num">iii.</div>
           <div>
-            <h3 class="principle-title">The <em>market research</em> tax is non-negotiable.</h3>
-            <p class="principle-body">Skip it once and you pay it back later, with interest. Build a product on top of an audience that doesn't exist on the platform you chose, and no amount of execution will rescue the thesis. I've shipped this mistake. I won't ship it again.</p>
+            <h3 class="principle-title" data-i18n="p.3.title">The <em>market research</em> tax is non-negotiable.</h3>
+            <p class="principle-body" data-i18n="p.3.body">Skip it once and you pay it back later, with interest. Build a product on top of an audience that doesn't exist on the platform you chose, and no amount of execution will rescue the thesis. I've shipped this mistake. I won't ship it again.</p>
           </div>
         </div>
 
         <div class="principle">
           <div class="principle-num">iv.</div>
           <div>
-            <h3 class="principle-title">A <em>post-mortem</em> is owed in writing.</h3>
-            <p class="principle-body">When something doesn't work, name the failure modes specifically — pricing model, beachhead miss, organizational risk, mental-model mismatch. Vague regret teaches no one. The next venture is funded by the lessons of the last.</p>
+            <h3 class="principle-title" data-i18n="p.4.title">A <em>post-mortem</em> is owed in writing.</h3>
+            <p class="principle-body" data-i18n="p.4.body">When something doesn't work, name the failure modes specifically — pricing model, beachhead miss, organizational risk, mental-model mismatch. Vague regret teaches no one. The next venture is funded by the lessons of the last.</p>
           </div>
         </div>
 
         <div class="principle">
           <div class="principle-num">v.</div>
           <div>
-            <h3 class="principle-title">Co-founder <em>commitment</em> is an asset class.</h3>
-            <p class="principle-body">Research-project mode and paid-obligation mode produce different companies. The job of early capital isn't growth — it's converting talented friends into a team with skin in the same game, on the same clock.</p>
+            <h3 class="principle-title" data-i18n="p.5.title">Co-founder <em>commitment</em> is an asset class.</h3>
+            <p class="principle-body" data-i18n="p.5.body">Research-project mode and paid-obligation mode produce different companies. The job of early capital isn't growth — it's converting talented friends into a team with skin in the same game, on the same clock.</p>
           </div>
         </div>
 
         <div class="principle">
           <div class="principle-num">vi.</div>
           <div>
-            <h3 class="principle-title">Set the <em>exit trigger</em> before you need it.</h3>
-            <p class="principle-body">Founders fail by inertia more often than by bad luck. Decide in advance — in writing — what condition flips Plan A to Plan B to Plan C, and on what date. Future-you, mid-crisis, will not be the one to make that call cleanly.</p>
+            <h3 class="principle-title" data-i18n="p.6.title">Set the <em>exit trigger</em> before you need it.</h3>
+            <p class="principle-body" data-i18n="p.6.body">Founders fail by inertia more often than by bad luck. Decide in advance — in writing — what condition flips Plan A to Plan B to Plan C, and on what date. Future-you, mid-crisis, will not be the one to make that call cleanly.</p>
           </div>
         </div>
 
@@ -641,24 +707,24 @@
   <!-- NOW -->
   <section class="block" id="now">
     <div class="section-header">
-      <div class="section-number">02 — What I'm doing now</div>
-      <h2 class="section-title">Iterant AI — <em>founding</em>.</h2>
+      <div class="section-number" data-i18n="sec.02.number">02 — What I'm doing now</div>
+      <h2 class="section-title" data-i18n="sec.02.title">Iterant AI — <em>founding</em>.</h2>
     </div>
 
     <div class="now-grid">
       <div></div>
       <div class="now-content">
-        <p class="now-lede">A Delaware C-Corp, three engineering co-founders, and a single conviction: <em>the input layer is the most under-built surface in AI.</em></p>
-        <p>The thesis is structural. Every assistant lives downstream of an intent the user has already half-formed; almost no product is paying attention to that moment. The leverage is upstream.</p>
-        <p>The current build is a Chrome extension — a deliberate choice over a native input method, because the semantic context available in the DOM is richer than what an OS-level IME can see. The cost is platform constraint; the trade is depth.</p>
-        <p>Operating in research-project mode for now, with a near-term friends round scoped to convert that into a real operating cadence. Knowing the difference matters.</p>
+        <p class="now-lede" data-i18n="now.lede">A Delaware C-Corp, three engineering co-founders, and a single conviction: <em>the input layer is the most under-built surface in AI.</em></p>
+        <p data-i18n="now.p1">The thesis is structural. Every assistant lives downstream of an intent the user has already half-formed; almost no product is paying attention to that moment. The leverage is upstream.</p>
+        <p data-i18n="now.p2">The current build is a Chrome extension — a deliberate choice over a native input method, because the semantic context available in the DOM is richer than what an OS-level IME can see. The cost is platform constraint; the trade is depth.</p>
+        <p data-i18n="now.p3">Operating in research-project mode for now, with a near-term friends round scoped to convert that into a real operating cadence. Knowing the difference matters.</p>
 
         <div class="now-tags">
-          <span class="tag">Founder / CEO</span>
-          <span class="tag">Delaware C-Corp</span>
-          <span class="tag">Pre-seed</span>
-          <span class="tag">Chrome Extension</span>
-          <span class="tag">Intent Layer</span>
+          <span class="tag" data-i18n="now.tag.1">Founder / CEO</span>
+          <span class="tag" data-i18n="now.tag.2">Delaware C-Corp</span>
+          <span class="tag" data-i18n="now.tag.3">Pre-seed</span>
+          <span class="tag" data-i18n="now.tag.4">Chrome Extension</span>
+          <span class="tag" data-i18n="now.tag.5">Intent Layer</span>
         </div>
       </div>
     </div>
@@ -667,8 +733,8 @@
   <!-- EXPERIENCE -->
   <section class="block" id="work">
     <div class="section-header">
-      <div class="section-number">03 — Selected work</div>
-      <h2 class="section-title">A short, <em>honest</em> ledger.</h2>
+      <div class="section-number" data-i18n="sec.03.number">03 — Selected work</div>
+      <h2 class="section-title" data-i18n="sec.03.title">A short, <em>honest</em> ledger.</h2>
     </div>
 
     <div class="experience-grid">
@@ -676,49 +742,49 @@
       <div class="timeline">
 
         <div class="exp-item">
-          <div class="exp-period">2025 — now</div>
+          <div class="exp-period" data-i18n="exp.1.period">2025 — now</div>
           <div>
-            <h3 class="exp-role">Founder & CEO</h3>
-            <p class="exp-org">Iterant AI, Inc. — Delaware</p>
-            <p class="exp-body">Incorporated the company, recruited the engineering team, set product architecture, and own the intent-classification system design. The work is moving from research mode to operating mode.</p>
+            <h3 class="exp-role" data-i18n="exp.1.role">Founder &amp; CEO</h3>
+            <p class="exp-org" data-i18n="exp.1.org">Iterant AI, Inc. — Delaware</p>
+            <p class="exp-body" data-i18n="exp.1.body">Incorporated the company, recruited the engineering team, set product architecture, and own the intent-classification system design. The work is moving from research mode to operating mode.</p>
           </div>
         </div>
 
         <div class="exp-item">
-          <div class="exp-period">2024 — 25</div>
+          <div class="exp-period" data-i18n="exp.2.period">2024 — 25</div>
           <div>
-            <h3 class="exp-role">Marketing Lead (informal)</h3>
-            <p class="exp-org">KeploreAI</p>
-            <p class="exp-body">Brought high-value connections from the Chinese automotive sector — Geely VP, Lotus CEO, a Yaoguang Tech case study — and recommended verticalizing around that beachhead. The recommendation wasn't taken.</p>
-            <p class="exp-note">Lesson taken forward: a SaaS pricing model layered onto deep-tech B2B can produce negative unit economics for a year before the math is visible. Pricing is strategy, not a knob.</p>
+            <h3 class="exp-role" data-i18n="exp.2.role">Marketing Lead (informal)</h3>
+            <p class="exp-org" data-i18n="exp.2.org">KeploreAI</p>
+            <p class="exp-body" data-i18n="exp.2.body">Brought high-value connections from the Chinese automotive sector — Geely VP, Lotus CEO, a Yaoguang Tech case study — and recommended verticalizing around that beachhead. The recommendation wasn't taken.</p>
+            <p class="exp-note" data-i18n="exp.2.note">Lesson taken forward: a SaaS pricing model layered onto deep-tech B2B can produce negative unit economics for a year before the math is visible. Pricing is strategy, not a knob.</p>
           </div>
         </div>
 
         <div class="exp-item">
-          <div class="exp-period">2023 — 25</div>
+          <div class="exp-period" data-i18n="exp.3.period">2023 — 25</div>
           <div>
-            <h3 class="exp-role">MCIT, Computer & Information Technology</h3>
-            <p class="exp-org">University of Pennsylvania</p>
-            <p class="exp-body">Coursework across databases, AI, and big-data analytics — including CIS 5500, CIS 521, CIS 5450. STEM-designated; the formal training I needed to stop being a "non-technical founder" in any conversation that mattered.</p>
+            <h3 class="exp-role" data-i18n="exp.3.role">MCIT, Computer &amp; Information Technology</h3>
+            <p class="exp-org" data-i18n="exp.3.org">University of Pennsylvania</p>
+            <p class="exp-body" data-i18n="exp.3.body">Coursework across databases, AI, and big-data analytics — including CIS 5500, CIS 521, CIS 5450. STEM-designated; the formal training I needed to stop being a "non-technical founder" in any conversation that mattered.</p>
           </div>
         </div>
 
         <div class="exp-item">
-          <div class="exp-period">earlier</div>
+          <div class="exp-period" data-i18n="exp.4.period">earlier</div>
           <div>
-            <h3 class="exp-role">COO — Esports Scouting Venture</h3>
-            <p class="exp-org">Independent project</p>
-            <p class="exp-body">Built the operating thesis for an AI-driven talent-discovery model across CS2 / Valorant / MOBA, including investor mapping (BITKRAFT, Griffin, Makers Fund, a16z Games) and a tournament-driven brand strategy.</p>
+            <h3 class="exp-role" data-i18n="exp.4.role">COO — Esports Scouting Venture</h3>
+            <p class="exp-org" data-i18n="exp.4.org">Independent project</p>
+            <p class="exp-body" data-i18n="exp.4.body">Built the operating thesis for an AI-driven talent-discovery model across CS2 / Valorant / MOBA, including investor mapping (BITKRAFT, Griffin, Makers Fund, a16z Games) and a tournament-driven brand strategy.</p>
           </div>
         </div>
 
         <div class="exp-item">
-          <div class="exp-period">earlier</div>
+          <div class="exp-period" data-i18n="exp.5.period">earlier</div>
           <div>
-            <h3 class="exp-role">Solo project — Zhihu Radar</h3>
-            <p class="exp-org">Information aggregation for study-abroad audiences</p>
-            <p class="exp-body">Shipped a product to an audience that — it turned out — barely existed on the platform I had chosen. The product was fine. The thesis wasn't.</p>
-            <p class="exp-note">The single most expensive lesson I've taken from a shipped project: do the market and data work <em>before</em> the build, not as a postscript to it.</p>
+            <h3 class="exp-role" data-i18n="exp.5.role">Solo project — Zhihu Radar</h3>
+            <p class="exp-org" data-i18n="exp.5.org">Information aggregation for study-abroad audiences</p>
+            <p class="exp-body" data-i18n="exp.5.body">Shipped a product to an audience that — it turned out — barely existed on the platform I had chosen. The product was fine. The thesis wasn't.</p>
+            <p class="exp-note" data-i18n="exp.5.note">The single most expensive lesson I've taken from a shipped project: do the market and data work <em>before</em> the build, not as a postscript to it.</p>
           </div>
         </div>
 
@@ -732,26 +798,26 @@
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-grid">
-      <div class="section-number">04 — Get in touch</div>
+      <div class="section-number" data-i18n="sec.04.number">04 — Get in touch</div>
       <div>
-        <h2 class="contact-lede">If something here <em>resonates</em>, send a note.</h2>
+        <h2 class="contact-lede" data-i18n="contact.lede">If something here <em>resonates</em>, send a note.</h2>
 
         <div class="contact-links">
           <a class="contact-link" href="mailto:hulingchong302@gmail.com">
-            <span class="ch-label">Email</span>
+            <span class="ch-label" data-i18n="contact.email.label">Email</span>
             <span class="ch-value">hulingchong302@gmail.com →</span>
           </a>
           <a class="contact-link" href="https://www.linkedin.com/in/lingchong-hu" target="_blank" rel="noopener">
-            <span class="ch-label">LinkedIn</span>
+            <span class="ch-label" data-i18n="contact.linkedin.label">LinkedIn</span>
             <span class="ch-value">/in/lingchong-hu →</span>
           </a>
           <a class="contact-link" href="https://github.com/Lingchong-Hu" target="_blank" rel="noopener">
-            <span class="ch-label">GitHub</span>
+            <span class="ch-label" data-i18n="contact.github.label">GitHub</span>
             <span class="ch-value">@Lingchong-Hu →</span>
           </a>
           <a class="contact-link" href="mailto:hulingchong302@gmail.com?subject=Iterant%20%E2%80%94%20Intro">
-            <span class="ch-label">Pitch / Investors</span>
-            <span class="ch-value">Open to intros →</span>
+            <span class="ch-label" data-i18n="contact.pitch.label">Pitch / Investors</span>
+            <span class="ch-value" data-i18n="contact.pitch.value">Open to intros →</span>
           </a>
         </div>
       </div>
@@ -761,10 +827,225 @@
 
 <div class="container">
   <footer>
-    <span>© 2026 Lingchong Hu · Philadelphia</span>
-    <span>Set in Fraunces & Inter Tight</span>
+    <span data-i18n="footer.left">© 2026 Lingchong Hu · Philadelphia</span>
+    <span data-i18n="footer.right">Set in Fraunces &amp; Inter Tight</span>
   </footer>
 </div>
+
+<script>
+(function () {
+  const T = {
+    'document.title': {
+      en: "Lingchong Hu — Founder, Iterant AI",
+      zh: "胡凌冲 — Iterant AI 创始人"
+    },
+
+    'nav.principles': { en: 'Principles', zh: '理念' },
+    'nav.now':        { en: 'Now',        zh: '当下' },
+    'nav.work':       { en: 'Work',       zh: '履历' },
+    'nav.contact':    { en: 'Contact',    zh: '联系' },
+
+    'hero.eyebrow': {
+      en: 'Founder · Builder · Philadelphia',
+      zh: '创始人 · 建造者 · 费城'
+    },
+    'hero.h1': {
+      en: 'I build at the <em>seams</em> of intent and software.',
+      zh: '我在意图与软件的<em>缝隙</em>处建造。'
+    },
+    'hero.currently.label': { en: 'Currently',  zh: '当前' },
+    'hero.currently.value': { en: 'Founder, Iterant AI', zh: '创始人，Iterant AI' },
+    'hero.trained.label':   { en: 'Trained at', zh: '受训于' },
+    'hero.trained.value':   { en: "Penn — MCIT '25", zh: "宾大 — MCIT '25" },
+    'hero.langs.label':     { en: 'Working in', zh: '工作语言' },
+    'hero.based.label':     { en: 'Based in',   zh: '常驻' },
+    'hero.based.value':     { en: 'Philadelphia, PA', zh: '美国 费城' },
+
+    'sec.01.number': { en: '01 — Operating Principles', zh: '01 — 行事原则' },
+    'sec.01.title':  { en: 'How I think about <em>building</em>.', zh: '我如何思考<em>建造</em>这件事。' },
+
+    'p.1.title': {
+      en: 'Build <em>next-step</em> products, not end-game ones.',
+      zh: '做<em>下一步</em>的产品，不做终局的产品。'
+    },
+    'p.1.body': {
+      en: "The fastest AI value comes from inserting capability into workflows people already inhabit — not from asking them to learn new behavior for a paradigm shift that hasn't earned trust yet. Meet users where their hands already are.",
+      zh: "AI 最快产生价值的方式，是把能力嵌入用户已经在用的工作流 —— 而不是要求他们为一个尚未赢得信任的范式转变去学习新行为。在用户的手已经停下来的地方，与他们相遇。"
+    },
+
+    'p.2.title': {
+      en: 'Pick a <em>moat</em>, not a feature.',
+      zh: '选一道<em>护城河</em>，而不是一个功能。'
+    },
+    'p.2.body': {
+      en: "Grammar correction, autocomplete, and summarization are commodities. Durable advantage lives one layer below: deeper context capture, proprietary behavioral data, or a system-layer position competitors can't reach without rebuilding the stack.",
+      zh: "语法纠错、自动补全、文本摘要 —— 都是商品化能力。可持续的优势在下面一层：更深的上下文捕获、专有的行为数据，或者一个竞争对手不重建整个技术栈就够不到的系统层位置。"
+    },
+
+    'p.3.title': {
+      en: 'The <em>market research</em> tax is non-negotiable.',
+      zh: '<em>市场调研</em>这笔税，没得商量。'
+    },
+    'p.3.body': {
+      en: "Skip it once and you pay it back later, with interest. Build a product on top of an audience that doesn't exist on the platform you chose, and no amount of execution will rescue the thesis. I've shipped this mistake. I won't ship it again.",
+      zh: "跳过一次，以后连本带利还。在错选平台的受众之上盖产品 —— 再强的执行力也救不了这个论点。这个错我交过学费，不会再交一次。"
+    },
+
+    'p.4.title': {
+      en: 'A <em>post-mortem</em> is owed in writing.',
+      zh: '<em>复盘</em>必须落到纸上。'
+    },
+    'p.4.body': {
+      en: "When something doesn't work, name the failure modes specifically — pricing model, beachhead miss, organizational risk, mental-model mismatch. Vague regret teaches no one. The next venture is funded by the lessons of the last.",
+      zh: "一件事没成，要具体地说出失败模式 —— 定价模型、滩头错位、组织风险、心智模型不匹配。模糊的遗憾教不了任何人。下一个项目的弹药，来自上一个项目的复盘。"
+    },
+
+    'p.5.title': {
+      en: 'Co-founder <em>commitment</em> is an asset class.',
+      zh: '联合创始人的<em>投入度</em>，本身就是一个资产类别。'
+    },
+    'p.5.body': {
+      en: "Research-project mode and paid-obligation mode produce different companies. The job of early capital isn't growth — it's converting talented friends into a team with skin in the same game, on the same clock.",
+      zh: "研究项目模式和有偿义务模式，产出的是两家不同的公司。早期资金真正的用途不是冲增长 —— 是把有才华的朋友，转化成同一时钟、同一桌牌局里押着同一份筹码的团队。"
+    },
+
+    'p.6.title': {
+      en: 'Set the <em>exit trigger</em> before you need it.',
+      zh: '在你需要它之前，先定好<em>退出条件</em>。'
+    },
+    'p.6.body': {
+      en: "Founders fail by inertia more often than by bad luck. Decide in advance — in writing — what condition flips Plan A to Plan B to Plan C, and on what date. Future-you, mid-crisis, will not be the one to make that call cleanly.",
+      zh: "创始人多数死于惯性，少数死于运气。提前 —— 而且要落到纸上 —— 决定什么条件会把方案 A 切到 B、B 切到 C，以及在哪个日期切。危机里的你，做不出干净的判断。"
+    },
+
+    'sec.02.number': { en: "02 — What I'm doing now", zh: '02 — 当下' },
+    'sec.02.title':  { en: 'Iterant AI — <em>founding</em>.', zh: 'Iterant AI — <em>从零开始</em>。' },
+
+    'now.lede': {
+      en: 'A Delaware C-Corp, three engineering co-founders, and a single conviction: <em>the input layer is the most under-built surface in AI.</em>',
+      zh: '一家特拉华 C-Corp，三位工程方向的联合创始人，一条信念：<em>输入层，是 AI 当下最被低估、最未被建造的表面。</em>'
+    },
+    'now.p1': {
+      en: 'The thesis is structural. Every assistant lives downstream of an intent the user has already half-formed; almost no product is paying attention to that moment. The leverage is upstream.',
+      zh: '这个论点是结构性的。每一个 assistant 都活在用户已经半成形的意图的下游；几乎没有产品在关注那个瞬间。杠杆在上游。'
+    },
+    'now.p2': {
+      en: 'The current build is a Chrome extension — a deliberate choice over a native input method, because the semantic context available in the DOM is richer than what an OS-level IME can see. The cost is platform constraint; the trade is depth.',
+      zh: '当前的产品形态是一个 Chrome 扩展 —— 之所以选它而不是原生输入法，是因为 DOM 里能拿到的语义上下文，比 OS 级输入法能看到的更丰富。代价是平台约束，换来的是深度。'
+    },
+    'now.p3': {
+      en: 'Operating in research-project mode for now, with a near-term friends round scoped to convert that into a real operating cadence. Knowing the difference matters.',
+      zh: '现在还是研究项目模式；近期一轮朋友轮的目的，是把它切换成真正的运营节奏。这两者的差别，是有意识地把握的。'
+    },
+    'now.tag.1': { en: 'Founder / CEO',     zh: '创始人 / CEO' },
+    'now.tag.2': { en: 'Delaware C-Corp',   zh: '特拉华 C-Corp' },
+    'now.tag.3': { en: 'Pre-seed',          zh: '种子前' },
+    'now.tag.4': { en: 'Chrome Extension',  zh: 'Chrome 扩展' },
+    'now.tag.5': { en: 'Intent Layer',      zh: '意图层' },
+
+    'sec.03.number': { en: '03 — Selected work', zh: '03 — 履历精选' },
+    'sec.03.title':  { en: 'A short, <em>honest</em> ledger.', zh: '一份简短而<em>诚实</em>的账。' },
+
+    'exp.1.period': { en: '2025 — now', zh: '2025 — 至今' },
+    'exp.1.role':   { en: 'Founder & CEO', zh: '创始人 & CEO' },
+    'exp.1.org':    { en: 'Iterant AI, Inc. — Delaware', zh: 'Iterant AI, Inc. — 特拉华' },
+    'exp.1.body': {
+      en: "Incorporated the company, recruited the engineering team, set product architecture, and own the intent-classification system design. The work is moving from research mode to operating mode.",
+      zh: "组建公司主体，招募工程团队，定下产品架构，并主导意图分类系统的设计。工作正在从研究模式切换到运营模式。"
+    },
+
+    'exp.2.period': { en: '2024 — 25', zh: '2024 — 25' },
+    'exp.2.role':   { en: 'Marketing Lead (informal)', zh: '市场负责人（非正式）' },
+    'exp.2.org':    { en: 'KeploreAI', zh: 'KeploreAI' },
+    'exp.2.body': {
+      en: "Brought high-value connections from the Chinese automotive sector — Geely VP, Lotus CEO, a Yaoguang Tech case study — and recommended verticalizing around that beachhead. The recommendation wasn't taken.",
+      zh: "带入了中国汽车行业的高价值连接 —— 吉利 VP、路特斯 CEO、耀光科技的一个案例 —— 并建议围绕这条滩头做垂直化。建议没有被采纳。"
+    },
+    'exp.2.note': {
+      en: "Lesson taken forward: a SaaS pricing model layered onto deep-tech B2B can produce negative unit economics for a year before the math is visible. Pricing is strategy, not a knob.",
+      zh: "带走的教训：SaaS 定价模型叠在深科技 B2B 上，可能在一年之内都看不见负的单位经济。定价是战略，不是一个旋钮。"
+    },
+
+    'exp.3.period': { en: '2023 — 25', zh: '2023 — 25' },
+    'exp.3.role':   { en: 'MCIT, Computer & Information Technology', zh: 'MCIT 计算机与信息技术硕士' },
+    'exp.3.org':    { en: 'University of Pennsylvania', zh: '宾夕法尼亚大学' },
+    'exp.3.body': {
+      en: "Coursework across databases, AI, and big-data analytics — including CIS 5500, CIS 521, CIS 5450. STEM-designated; the formal training I needed to stop being a \"non-technical founder\" in any conversation that mattered.",
+      zh: "数据库、AI、大数据分析方向的课程 —— 包含 CIS 5500、CIS 521、CIS 5450。STEM 项目；这是我需要的正式训练，让我在任何要紧的对话里，不再被默认成"非技术创始人"。"
+    },
+
+    'exp.4.period': { en: 'earlier', zh: '更早' },
+    'exp.4.role':   { en: 'COO — Esports Scouting Venture', zh: 'COO — 电竞选材项目' },
+    'exp.4.org':    { en: 'Independent project', zh: '独立项目' },
+    'exp.4.body': {
+      en: "Built the operating thesis for an AI-driven talent-discovery model across CS2 / Valorant / MOBA, including investor mapping (BITKRAFT, Griffin, Makers Fund, a16z Games) and a tournament-driven brand strategy.",
+      zh: "为 AI 驱动的电竞人才发现模型构建运营论点，覆盖 CS2 / Valorant / MOBA，包含投资人地图（BITKRAFT、Griffin、Makers Fund、a16z Games）以及赛事驱动的品牌策略。"
+    },
+
+    'exp.5.period': { en: 'earlier', zh: '更早' },
+    'exp.5.role':   { en: 'Solo project — Zhihu Radar', zh: '独立项目 — 知乎雷达' },
+    'exp.5.org':    { en: 'Information aggregation for study-abroad audiences', zh: '面向留学受众的信息聚合' },
+    'exp.5.body': {
+      en: "Shipped a product to an audience that — it turned out — barely existed on the platform I had chosen. The product was fine. The thesis wasn't.",
+      zh: "把产品交付给了一群 —— 事后证明 —— 在我选的平台上几乎不存在的受众。产品本身没问题，论点有问题。"
+    },
+    'exp.5.note': {
+      en: "The single most expensive lesson I've taken from a shipped project: do the market and data work <em>before</em> the build, not as a postscript to it.",
+      zh: "我从一个已经上线的项目里付出的最贵的一课：市场和数据这两份功课，要做在<em>动手之前</em>，而不是事后补的注脚。"
+    },
+
+    'sec.04.number': { en: '04 — Get in touch', zh: '04 — 联系' },
+    'contact.lede': {
+      en: 'If something here <em>resonates</em>, send a note.',
+      zh: '如果这里有什么<em>合上拍</em>了，写信来。'
+    },
+    'contact.email.label':    { en: 'Email',             zh: '邮箱' },
+    'contact.linkedin.label': { en: 'LinkedIn',          zh: 'LinkedIn' },
+    'contact.github.label':   { en: 'GitHub',            zh: 'GitHub' },
+    'contact.pitch.label':    { en: 'Pitch / Investors', zh: '投资 / Pitch' },
+    'contact.pitch.value':    { en: 'Open to intros →',  zh: '欢迎引荐 →' },
+
+    'footer.left':  { en: '© 2026 Lingchong Hu · Philadelphia', zh: '© 2026 胡凌冲 · 费城' },
+    'footer.right': { en: 'Set in Fraunces & Inter Tight',     zh: '排印：Fraunces & Inter Tight' }
+  };
+
+  function applyLang(lang) {
+    if (lang !== 'en' && lang !== 'zh') lang = 'en';
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.title = T['document.title'][lang];
+
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (T[k] && T[k][lang] != null) el.innerHTML = T[k][lang];
+    });
+
+    document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+      btn.setAttribute('aria-pressed', String(btn.getAttribute('data-lang-btn') === lang));
+    });
+
+    try { localStorage.setItem('site.lang', lang); } catch (e) {}
+  }
+
+  function detectInitial() {
+    try {
+      var saved = localStorage.getItem('site.lang');
+      if (saved === 'en' || saved === 'zh') return saved;
+    } catch (e) {}
+    var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+    return nav.indexOf('zh') === 0 ? 'zh' : 'en';
+  }
+
+  document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      applyLang(btn.getAttribute('data-lang-btn'));
+    });
+  });
+
+  applyLang(detectInitial());
+})();
+</script>
 
 </body>
 </html>
