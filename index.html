@@ -90,6 +90,17 @@
     font-family: var(--serif-cn);
   }
 
+  /* Chinese has no real italic font; replace inline em with bold + accent,
+     and strip block-level italics on org/note lines. */
+  html[lang^="zh"] em {
+    font-style: normal;
+    font-weight: 600;
+  }
+  html[lang^="zh"] .exp-org,
+  html[lang^="zh"] .exp-note {
+    font-style: normal;
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
   html { scroll-behavior: smooth; }

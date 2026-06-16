@@ -49,6 +49,12 @@
   html[lang^="zh"] .lede,
   html[lang^="zh"] .bio p { font-family: var(--serif-cn); }
 
+  /* Chinese has no real italic font; use bold + accent for inline emphasis. */
+  html[lang^="zh"] em {
+    font-style: normal;
+    font-weight: 600;
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
