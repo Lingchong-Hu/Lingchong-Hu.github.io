@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lingchong-hu.github.io/sitemap.xml
+Sitemap: https://lingchonghu.com/sitemap.xml
