@@ -584,6 +584,68 @@
     color: var(--muted);
   }
 
+  /* ========= HERO LEDE + TEASERS + BUILT ========= */
+  .hero-lede {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 56ch;
+    margin-top: -20px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 1s ease-out 0.55s forwards;
+  }
+  html[lang^="zh"] .hero-lede { line-height: 1.85; }
+  .hero-link {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    white-space: nowrap;
+    transition: border-color 0.2s;
+  }
+  .hero-link:hover { border-bottom-color: var(--accent); }
+
+  .arrow-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .arrow-link:hover { border-bottom-color: var(--accent); }
+
+  .built-stat {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(56px, 9vw, 104px);
+    line-height: 1;
+    color: var(--accent);
+    letter-spacing: -0.03em;
+    margin-bottom: 10px;
+  }
+  .built-stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 36px;
+  }
+  .built-body {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin-bottom: 32px;
+  }
+  html[lang^="zh"] .built-body { line-height: 1.85; }
+
   /* ========= RESPONSIVE ========= */
   @media (max-width: 768px) {
     .container { padding: 0 24px; }
@@ -618,7 +680,7 @@
     <div class="mark">Lingchong Hu · 胡凌冲</div>
     <nav>
       <a href="/about/" data-i18n="nav.about">About</a>
-      <a href="#principles" data-i18n="nav.principles">Principles</a>
+      <a href="/intent/" data-i18n="nav.thesis">The Thesis</a>
       <a href="#work" data-i18n="nav.work">Work</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
       <span class="lang-toggle" role="group" aria-label="Language">
@@ -631,7 +693,8 @@
   <!-- HERO -->
   <section class="hero">
     <h1 class="hero-eyebrow" data-i18n="hero.eyebrow">Lingchong Hu — Founder · Builder · Philadelphia</h1>
-    <h2 class="hero-headline" data-i18n="hero.h1">I build at the <em>seams</em> of intent and software.</h2>
+    <h2 class="hero-headline" data-i18n="hero.h1">The bottleneck of AI isn't answers. It's <em>intent</em>.</h2>
+    <p class="hero-lede" data-i18n="hero.lede">Every assistant waits downstream for a prompt. I build upstream — the layer that reads what you want the moment before you've finished forming it. <a href="/intent/" class="hero-link">Read the full thesis →</a> &nbsp;·&nbsp; <a href="/intent/demo/" class="hero-link">Watch it live →</a></p>
     <div class="hero-meta">
       <div class="hero-meta-item">
         <span class="label" data-i18n="hero.currently.label">Currently</span>
@@ -652,91 +715,20 @@
     </div>
   </section>
 
-  <!-- PRINCIPLES -->
-  <section class="block" id="principles">
+  <!-- BUILT (proof of work → showcase) -->
+  <section class="block" id="built">
     <div class="section-header">
-      <div class="section-number" data-i18n="sec.01.number">01 — Operating Principles</div>
-      <h2 class="section-title" data-i18n="sec.01.title">How I think about <em>building</em>.</h2>
-    </div>
-
-    <div class="principles">
-      <div></div>
-      <div class="principles-list">
-
-        <div class="principle">
-          <div class="principle-num">i.</div>
-          <div>
-            <h3 class="principle-title" data-i18n="p.1.title">Build <em>next-step</em> products, not end-game ones.</h3>
-            <p class="principle-body" data-i18n="p.1.body">The fastest AI value comes from inserting capability into workflows people already inhabit — not from asking them to learn new behavior for a paradigm shift that hasn't earned trust yet. Meet users where their hands already are.</p>
-          </div>
-        </div>
-
-        <div class="principle">
-          <div class="principle-num">ii.</div>
-          <div>
-            <h3 class="principle-title" data-i18n="p.2.title">Pick a <em>moat</em>, not a feature.</h3>
-            <p class="principle-body" data-i18n="p.2.body">Grammar correction, autocomplete, and summarization are commodities. Durable advantage lives one layer below: deeper context capture, proprietary behavioral data, or a system-layer position competitors can't reach without rebuilding the stack.</p>
-          </div>
-        </div>
-
-        <div class="principle">
-          <div class="principle-num">iii.</div>
-          <div>
-            <h3 class="principle-title" data-i18n="p.3.title">The <em>market research</em> tax is non-negotiable.</h3>
-            <p class="principle-body" data-i18n="p.3.body">Skip it once and you pay it back later, with interest. Build a product on top of an audience that doesn't exist on the platform you chose, and no amount of execution will rescue the thesis. Demand decides every technical direction of this era — and an AI product only lands where someone is actually willing to pay.</p>
-          </div>
-        </div>
-
-        <div class="principle">
-          <div class="principle-num">iv.</div>
-          <div>
-            <h3 class="principle-title" data-i18n="p.4.title">A <em>post-mortem</em> is owed in writing.</h3>
-            <p class="principle-body" data-i18n="p.4.body">When something doesn't work, name the failure modes specifically — pricing model, beachhead miss, organizational risk, mental-model mismatch. Vague regret teaches no one. The next venture is funded by the lessons of the last.</p>
-          </div>
-        </div>
-
-        <div class="principle">
-          <div class="principle-num">v.</div>
-          <div>
-            <h3 class="principle-title" data-i18n="p.5.title">Co-founder <em>commitment</em> is an asset class.</h3>
-            <p class="principle-body" data-i18n="p.5.body">Research-project mode and paid-obligation mode produce different companies. The job of early capital isn't growth — it's converting talented friends into a team with skin in the same game, on the same clock.</p>
-          </div>
-        </div>
-
-        <div class="principle">
-          <div class="principle-num">vi.</div>
-          <div>
-            <h3 class="principle-title" data-i18n="p.6.title">Set the <em>exit trigger</em> before you need it.</h3>
-            <p class="principle-body" data-i18n="p.6.body">Founders fail by inertia more often than by bad luck. Decide in advance — in writing — what condition flips Plan A to Plan B to Plan C, and on what date. Future-you, mid-crisis, will not be the one to make that call cleanly.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- NOW -->
-  <section class="block" id="now">
-    <div class="section-header">
-      <div class="section-number" data-i18n="sec.02.number">02 — What I'm doing now</div>
-      <h2 class="section-title" data-i18n="sec.02.title">Iterant AI — <em>founding</em>.</h2>
+      <div class="section-number" data-i18n="sec.02.number">01 — Proof of work</div>
+      <h2 class="section-title" data-i18n="sec.02.title">Talk is the cheapest it has ever been. So I <em>build</em>.</h2>
     </div>
 
     <div class="now-grid">
       <div></div>
-      <div class="now-content">
-        <p class="now-lede" data-i18n="now.lede">A Delaware C-Corp, three engineering co-founders, and a single conviction: <em>the input layer is the most under-built surface in AI.</em></p>
-        <p data-i18n="now.p1">The thesis is structural. Every assistant lives downstream of an intent the user has already half-formed; almost no product is paying attention to that moment. The leverage is upstream.</p>
-        <p data-i18n="now.p2">The current build is a Chrome extension — a deliberate choice over a native input method, because the semantic context available in the DOM is richer than what an OS-level IME can see. The cost is platform constraint; the trade is depth.</p>
-        <p data-i18n="now.p3">Operating in research-project mode for now, with a near-term friends round scoped to convert that into a real operating cadence. Knowing the difference matters.</p>
-
-        <div class="now-tags">
-          <span class="tag" data-i18n="now.tag.1">Founder / CEO</span>
-          <span class="tag" data-i18n="now.tag.2">Delaware C-Corp</span>
-          <span class="tag" data-i18n="now.tag.3">Pre-seed</span>
-          <span class="tag" data-i18n="now.tag.4">Chrome Extension</span>
-          <span class="tag" data-i18n="now.tag.5">Intent Layer</span>
-        </div>
+      <div>
+        <div class="built-stat">27</div>
+        <div class="built-stat-label" data-i18n="built.statlabel">interactive AI prototypes · clickable, not screenshots</div>
+        <p class="built-body" data-i18n="built.body">Each one is a small bet on what people actually want — built fast to find out. Every demo ships with its logic, its business model, and an honest market read.</p>
+        <a class="arrow-link" href="https://haowan-demos.vercel.app" target="_blank" rel="noopener" data-i18n="built.cta">Open the gallery → haowan-demos.vercel.app</a>
       </div>
     </div>
   </section>
@@ -744,7 +736,7 @@
   <!-- EXPERIENCE -->
   <section class="block" id="work">
     <div class="section-header">
-      <div class="section-number" data-i18n="sec.03.number">03 — Selected work</div>
+      <div class="section-number" data-i18n="sec.03.number">02 — Selected work</div>
       <h2 class="section-title" data-i18n="sec.03.title">A short, <em>honest</em> ledger.</h2>
     </div>
 
@@ -765,8 +757,8 @@
           <div class="exp-period" data-i18n="exp.2.period">2024 — 25</div>
           <div>
             <h3 class="exp-role" data-i18n="exp.2.role">Marketing Lead (informal)</h3>
-            <p class="exp-org" data-i18n="exp.2.org">KeploreAI</p>
-            <p class="exp-body" data-i18n="exp.2.body">Brought high-value connections from the Chinese automotive sector — Geely VP, Lotus CEO, a Yaoguang Tech case study — and recommended verticalizing around that beachhead. The recommendation wasn't taken.</p>
+            <p class="exp-org" data-i18n="exp.2.org">Deep-tech B2B startup</p>
+            <p class="exp-body" data-i18n="exp.2.body">Brought high-value connections from the Chinese automotive sector — a Geely VP, a Lotus CEO, an automotive-tech case study — and made the internal case for verticalizing around that beachhead.</p>
             <p class="exp-note" data-i18n="exp.2.note">Lesson taken forward: a SaaS pricing model layered onto deep-tech B2B can produce negative unit economics for a year before the math is visible. Pricing is strategy, not a knob.</p>
           </div>
         </div>
@@ -799,7 +791,7 @@
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-grid">
-      <div class="section-number" data-i18n="sec.04.number">04 — Get in touch</div>
+      <div class="section-number" data-i18n="sec.04.number">03 — Get in touch</div>
       <div>
         <h2 class="contact-lede" data-i18n="contact.lede">If something here <em>resonates</em>, send a note.</h2>
 
@@ -841,19 +833,22 @@
       zh: "胡凌冲 — Iterant AI 创始人"
     },
 
-    'nav.about':      { en: 'About',      zh: '关于' },
-    'nav.principles': { en: 'Principles', zh: '理念' },
-    'nav.now':        { en: 'Now',        zh: '当下' },
-    'nav.work':       { en: 'Work',       zh: '履历' },
-    'nav.contact':    { en: 'Contact',    zh: '联系' },
+    'nav.about':   { en: 'About',      zh: '关于' },
+    'nav.thesis':  { en: 'The Thesis', zh: '核心论点' },
+    'nav.work':    { en: 'Work',       zh: '履历' },
+    'nav.contact': { en: 'Contact',    zh: '联系' },
 
     'hero.eyebrow': {
       en: 'Lingchong Hu — Founder · Builder · Philadelphia',
       zh: '胡凌冲 — 创始人 · 建造者 · 费城'
     },
     'hero.h1': {
-      en: 'I build at the <em>seams</em> of intent and software.',
-      zh: '我在意图与软件的<em>缝隙</em>处建造。'
+      en: "The bottleneck of AI isn't answers. It's <em>intent</em>.",
+      zh: 'AI 的瓶颈不是答案,是<em>意图</em>。'
+    },
+    'hero.lede': {
+      en: 'Every assistant waits downstream for a prompt. I build upstream — the layer that reads what you want the moment before you\'ve finished forming it. <a href="/intent/" class="hero-link">Read the full thesis →</a> &nbsp;·&nbsp; <a href="/intent/demo/" class="hero-link">Watch it live →</a>',
+      zh: '每一个 assistant 都在下游等你敲下一句 prompt。我建在上游——在你还没把"想要什么"想完整的那一瞬,就读懂它的那一层。<a href="/intent/" class="hero-link">读完整论点 →</a> &nbsp;·&nbsp; <a href="/intent/demo/" class="hero-link">看现场 →</a>'
     },
     'hero.currently.label': { en: 'Currently',  zh: '当前' },
     'hero.currently.value': { en: 'Founder, Iterant AI', zh: '创始人，Iterant AI' },
@@ -863,89 +858,23 @@
     'hero.based.label':     { en: 'Based in',   zh: '常驻' },
     'hero.based.value':     { en: 'Philadelphia, PA', zh: '美国 费城' },
 
-    'sec.01.number': { en: '01 — Operating Principles', zh: '01 — 行事原则' },
-    'sec.01.title':  { en: 'How I think about <em>building</em>.', zh: '我如何思考<em>建造</em>这件事。' },
+    'sec.02.number': { en: '01 — Proof of work', zh: '01 — 做出来的东西' },
+    'sec.02.title':  { en: 'Talk is the cheapest it has ever been. So I <em>build</em>.', zh: '说话从没像现在这么廉价过。所以我<em>动手做</em>。' },
 
-    'p.1.title': {
-      en: 'Build <em>next-step</em> products, not end-game ones.',
-      zh: '做<em>下一步</em>的产品，不做终局的产品。'
+    'built.statlabel': {
+      en: 'interactive AI prototypes · clickable, not screenshots',
+      zh: '个可交互的 AI 原型 · 能点开玩,不是截图'
     },
-    'p.1.body': {
-      en: "The fastest AI value comes from inserting capability into workflows people already inhabit — not from asking them to learn new behavior for a paradigm shift that hasn't earned trust yet. Meet users where their hands already are.",
-      zh: "AI 最快产生价值的方式，是把能力嵌入用户已经在用的工作流 —— 而不是要求他们为一个尚未赢得信任的范式转变去学习新行为。在用户的手已经停下来的地方，与他们相遇。"
+    'built.body': {
+      en: 'Each one is a small bet on what people actually want — built fast to find out. Every demo ships with its logic, its business model, and an honest market read.',
+      zh: '每一个都是对"人到底要什么"的一次小下注——快速做出来,就为了验证。每个 demo 都附上它的程序逻辑、商业模式,和一份诚实的市场判断。'
     },
-
-    'p.2.title': {
-      en: 'Pick a <em>moat</em>, not a feature.',
-      zh: '选一道<em>护城河</em>，而不是一个功能。'
-    },
-    'p.2.body': {
-      en: "Grammar correction, autocomplete, and summarization are commodities. Durable advantage lives one layer below: deeper context capture, proprietary behavioral data, or a system-layer position competitors can't reach without rebuilding the stack.",
-      zh: "语法纠错、自动补全、文本摘要 —— 都是商品化能力。可持续的优势在下面一层：更深的上下文捕获、专有的行为数据，或者一个竞争对手不重建整个技术栈就够不到的系统层位置。"
+    'built.cta': {
+      en: 'Open the gallery → haowan-demos.vercel.app',
+      zh: '打开作品集 → haowan-demos.vercel.app'
     },
 
-    'p.3.title': {
-      en: 'The <em>market research</em> tax is non-negotiable.',
-      zh: '<em>市场调研</em>这笔税，没得商量。'
-    },
-    'p.3.body': {
-      en: "Skip it once and you pay it back later, with interest. Build a product on top of an audience that doesn't exist on the platform you chose, and no amount of execution will rescue the thesis. Demand decides every technical direction of this era — and an AI product only lands where someone is actually willing to pay.",
-      zh: "跳过一次，以后连本带利还。在错选平台的受众之上盖产品 —— 再强的执行力也救不了这个论点。需求决定了这个时代的一切技术方向 —— 有人愿意付钱，才是 AI 产品真正的落地点。"
-    },
-
-    'p.4.title': {
-      en: 'A <em>post-mortem</em> is owed in writing.',
-      zh: '<em>复盘</em>必须落到纸上。'
-    },
-    'p.4.body': {
-      en: "When something doesn't work, name the failure modes specifically — pricing model, beachhead miss, organizational risk, mental-model mismatch. Vague regret teaches no one. The next venture is funded by the lessons of the last.",
-      zh: "一件事没成，要具体地说出失败模式 —— 定价模型、滩头错位、组织风险、心智模型不匹配。模糊的遗憾教不了任何人。下一个项目的弹药，来自上一个项目的复盘。"
-    },
-
-    'p.5.title': {
-      en: 'Co-founder <em>commitment</em> is an asset class.',
-      zh: '联合创始人的<em>投入度</em>，本身就是一个资产类别。'
-    },
-    'p.5.body': {
-      en: "Research-project mode and paid-obligation mode produce different companies. The job of early capital isn't growth — it's converting talented friends into a team with skin in the same game, on the same clock.",
-      zh: "研究项目模式和有偿义务模式，产出的是两家不同的公司。早期资金真正的用途不是冲增长 —— 是把有才华的朋友，转化成同一时钟、同一桌牌局里押着同一份筹码的团队。"
-    },
-
-    'p.6.title': {
-      en: 'Set the <em>exit trigger</em> before you need it.',
-      zh: '在你需要它之前，先定好<em>退出条件</em>。'
-    },
-    'p.6.body': {
-      en: "Founders fail by inertia more often than by bad luck. Decide in advance — in writing — what condition flips Plan A to Plan B to Plan C, and on what date. Future-you, mid-crisis, will not be the one to make that call cleanly.",
-      zh: "创始人多数死于惯性，少数死于运气。提前 —— 而且要落到纸上 —— 决定什么条件会把方案 A 切到 B、B 切到 C，以及在哪个日期切。危机里的你，做不出干净的判断。"
-    },
-
-    'sec.02.number': { en: "02 — What I'm doing now", zh: '02 — 当下' },
-    'sec.02.title':  { en: 'Iterant AI — <em>founding</em>.', zh: 'Iterant AI — <em>从零开始</em>。' },
-
-    'now.lede': {
-      en: 'A Delaware C-Corp, three engineering co-founders, and a single conviction: <em>the input layer is the most under-built surface in AI.</em>',
-      zh: '一家特拉华 C-Corp，三位工程方向的联合创始人，一条信念：<em>输入层，是 AI 当下最被低估、最未被建造的表面。</em>'
-    },
-    'now.p1': {
-      en: 'The thesis is structural. Every assistant lives downstream of an intent the user has already half-formed; almost no product is paying attention to that moment. The leverage is upstream.',
-      zh: '这个论点是结构性的。每一个 assistant 都活在用户已经半成形的意图的下游；几乎没有产品在关注那个瞬间。杠杆在上游。'
-    },
-    'now.p2': {
-      en: 'The current build is a Chrome extension — a deliberate choice over a native input method, because the semantic context available in the DOM is richer than what an OS-level IME can see. The cost is platform constraint; the trade is depth.',
-      zh: '当前的产品形态是一个 Chrome 扩展 —— 之所以选它而不是原生输入法，是因为 DOM 里能拿到的语义上下文，比 OS 级输入法能看到的更丰富。代价是平台约束，换来的是深度。'
-    },
-    'now.p3': {
-      en: 'Operating in research-project mode for now, with a near-term friends round scoped to convert that into a real operating cadence. Knowing the difference matters.',
-      zh: '现在还是研究项目模式；近期一轮朋友轮的目的，是把它切换成真正的运营节奏。这两者的差别，是有意识地把握的。'
-    },
-    'now.tag.1': { en: 'Founder / CEO',     zh: '创始人 / CEO' },
-    'now.tag.2': { en: 'Delaware C-Corp',   zh: '特拉华 C-Corp' },
-    'now.tag.3': { en: 'Pre-seed',          zh: '种子前' },
-    'now.tag.4': { en: 'Chrome Extension',  zh: 'Chrome 扩展' },
-    'now.tag.5': { en: 'Intent Layer',      zh: '意图层' },
-
-    'sec.03.number': { en: '03 — Selected work', zh: '03 — 履历精选' },
+    'sec.03.number': { en: '02 — Selected work', zh: '02 — 履历精选' },
     'sec.03.title':  { en: 'A short, <em>honest</em> ledger.', zh: '一份简短而<em>诚实</em>的账。' },
 
     'exp.1.period': { en: '2025 — now', zh: '2025 — 至今' },
@@ -958,10 +887,10 @@
 
     'exp.2.period': { en: '2024 — 25', zh: '2024 — 25' },
     'exp.2.role':   { en: 'Marketing Lead (informal)', zh: '市场负责人（非正式）' },
-    'exp.2.org':    { en: 'KeploreAI', zh: 'KeploreAI' },
+    'exp.2.org':    { en: 'Deep-tech B2B startup', zh: '一家 deep-tech B2B 创业公司' },
     'exp.2.body': {
-      en: "Brought high-value connections from the Chinese automotive sector — Geely VP, Lotus CEO, a Yaoguang Tech case study — and recommended verticalizing around that beachhead. The recommendation wasn't taken.",
-      zh: "带入了中国汽车行业的高价值连接 —— 吉利 VP、路特斯 CEO、耀光科技的一个案例 —— 并建议围绕这条滩头做垂直化。建议没有被采纳。"
+      en: "Brought high-value connections from the Chinese automotive sector — a Geely VP, a Lotus CEO, an automotive-tech case study — and made the internal case for verticalizing around that beachhead.",
+      zh: "带入了中国汽车行业的高价值连接 —— 吉利 VP、路特斯 CEO、一个汽车科技案例 —— 并在内部主张围绕这条滩头做垂直化。"
     },
     'exp.2.note': {
       en: "Lesson taken forward: a SaaS pricing model layered onto deep-tech B2B can produce negative unit economics for a year before the math is visible. Pricing is strategy, not a knob.",
@@ -984,7 +913,7 @@
       zh: "为 AI 驱动的电竞人才发现模型构建运营论点，覆盖 CS2 / Valorant / MOBA，包含投资人地图（BITKRAFT、Griffin、Makers Fund、a16z Games）以及赛事驱动的品牌策略。"
     },
 
-    'sec.04.number': { en: '04 — Get in touch', zh: '04 — 联系' },
+    'sec.04.number': { en: '03 — Get in touch', zh: '03 — 联系' },
     'contact.lede': {
       en: 'If something here <em>resonates</em>, send a note.',
       zh: '如果这里有什么<em>合上拍</em>了，写信来。'
