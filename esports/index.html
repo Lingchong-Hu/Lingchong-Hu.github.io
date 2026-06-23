@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Esports Scouting — a venture, end to end — Lingchong Hu</title>
+<meta name="description" content="An AI esports-scouting venture, run end to end — from a cold email to a signed contract with Fnatic's CS2 team, to a deliberate shutdown. What it taught me about product-market fit. By Lingchong Hu (胡凌冲)." />
+<meta name="author" content="Lingchong Hu" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://lingchonghu.com/esports/" />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Esports Scouting — a venture, end to end — Lingchong Hu" />
+<meta property="og:description" content="From a cold email to a signed contract — and a deliberate shutdown. What an esports-scouting venture taught me about product-market fit." />
+<meta property="og:url" content="https://lingchonghu.com/esports/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="zh_CN" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #2d2d2d;
+    --paper: #f5f1ea;
+    --paper-warm: #ebe5d9;
+    --rule: #d4cbb8;
+    --muted: #6b6357;
+    --accent: #c1440e;
+    --accent-soft: rgba(193, 68, 14, 0.08);
+    --serif: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+    --serif-cn: 'Fraunces', 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
+    --sans: 'Inter Tight', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  }
+
+  html[lang^="zh"] body,
+  html[lang^="zh"] .page-h1,
+  html[lang^="zh"] .lede,
+  html[lang^="zh"] .manifesto,
+  html[lang^="zh"] .manifesto-sub,
+  html[lang^="zh"] .bio p { font-family: var(--serif-cn); }
+
+  html[lang^="zh"] em { font-style: normal; font-weight: 600; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,0.015) 1px, transparent 1px),
+      radial-gradient(circle at 70% 70%, rgba(0,0,0,0.015) 1px, transparent 1px);
+    background-size: 3px 3px, 5px 5px;
+    opacity: 0.6;
+    mix-blend-mode: multiply;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* topbar */
+  .topbar {
+    padding: 32px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .topbar .mark { color: var(--ink); font-weight: 500; }
+  .topbar nav { display: flex; align-items: baseline; }
+  .topbar nav a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 28px;
+    transition: color 0.2s;
+  }
+  .topbar nav a:hover { color: var(--accent); }
+  .lang-toggle {
+    margin-left: 28px;
+    padding-left: 20px;
+    border-left: 1px solid var(--rule);
+    display: inline-flex;
+    gap: 10px;
+  }
+  .lang-toggle button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+  .lang-toggle button:hover { color: var(--accent); }
+  .lang-toggle button.active { color: var(--ink); font-weight: 500; }
+
+  /* page header */
+  .page-header { padding: 100px 0 80px; }
+  .page-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .page-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--accent); }
+  .page-h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(40px, 5.6vw, 76px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    margin-bottom: 36px;
+    max-width: 20ch;
+  }
+  html[lang^="zh"] .page-h1 { line-height: 1.22; }
+  .page-h1 em { font-style: italic; color: var(--accent); }
+  .lede {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+  html[lang^="zh"] .lede { line-height: 1.7; }
+  .lede em { font-style: italic; color: var(--accent); }
+
+  /* meta row */
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 44px;
+    padding-top: 30px;
+    border-top: 1px solid var(--rule);
+  }
+  .fact .fact-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .fact .fact-value {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--ink);
+  }
+
+  /* prose block */
+  .bio { padding: 72px 0; border-top: 1px solid var(--rule); }
+  .bio-grid { display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  .bio-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .bio p {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.72;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+    max-width: 64ch;
+  }
+  html[lang^="zh"] .bio p { line-height: 1.9; }
+  .bio p:last-child { margin-bottom: 0; }
+  .bio em { font-style: italic; color: var(--accent); }
+  .bio strong { font-weight: 500; color: var(--ink); }
+
+  /* manifesto pull */
+  .manifesto-block { padding: 90px 0; border-top: 1px solid var(--rule); }
+  .manifesto-grid { display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  .manifesto {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(28px, 4.2vw, 52px);
+    line-height: 1.15;
+    letter-spacing: -0.022em;
+    max-width: 21ch;
+    margin-bottom: 40px;
+    color: var(--ink);
+  }
+  html[lang^="zh"] .manifesto { line-height: 1.34; }
+  .manifesto em { font-style: italic; color: var(--accent); }
+  .manifesto-sub {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+  html[lang^="zh"] .manifesto-sub { line-height: 1.85; }
+  .manifesto-sub em { font-style: italic; color: var(--accent); }
+
+  /* next / cta */
+  .next { padding: 90px 0 30px; border-top: 1px solid var(--rule); }
+  .next-grid { display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+  .next-h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(26px, 3.4vw, 42px);
+    line-height: 1.18;
+    letter-spacing: -0.015em;
+    margin-bottom: 32px;
+    max-width: 20ch;
+  }
+  html[lang^="zh"] .next-h2 { line-height: 1.38; }
+  .next-h2 em { font-style: italic; color: var(--accent); }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 16px; }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: #fff;
+    background: var(--accent);
+    padding: 15px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    box-shadow: 0 12px 32px rgba(193,68,14,0.22);
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+  }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(193,68,14,0.36); filter: brightness(1.04); }
+  .cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    padding: 15px 22px;
+    border-radius: 4px;
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .cta-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* footer */
+  footer {
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (max-width: 768px) {
+    .container { padding: 0 24px; }
+    .page-header { padding: 60px 0 50px; }
+    .bio, .manifesto-block, .next { padding: 56px 0; }
+    .bio-grid, .manifesto-grid, .next-grid { grid-template-columns: 1fr; gap: 20px; }
+    .facts { gap: 24px 32px; }
+    .topbar nav a { margin-left: 16px; }
+    .topbar nav a:first-child { display: none; }
+    .lang-toggle { margin-left: 16px; padding-left: 12px; gap: 8px; }
+    footer { flex-direction: column; gap: 12px; }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "From a cold email to a signed contract — and a deliberate shutdown.",
+  "author": { "@type": "Person", "name": "Lingchong Hu", "alternateName": "胡凌冲", "url": "https://lingchonghu.com/" },
+  "mainEntityOfPage": "https://lingchonghu.com/esports/",
+  "publisher": { "@type": "Organization", "name": "Iterant AI, Inc." }
+}
+</script>
+</head>
+<body>
+
+<div class="container">
+
+  <header class="topbar">
+    <div class="mark">Lingchong Hu · 胡凌冲</div>
+    <nav>
+      <a href="/" data-i18n="nav.home">Home</a>
+      <a href="/intent/" data-i18n="nav.thesis">The Thesis</a>
+      <a href="/#work" data-i18n="nav.work">Work</a>
+      <a href="/#contact" data-i18n="nav.contact">Contact</a>
+      <span class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="en">EN</button>
+        <button type="button" data-lang-btn="zh">中文</button>
+      </span>
+    </nav>
+  </header>
+
+  <section class="page-header">
+    <div class="page-eyebrow" data-i18n="page.eyebrow">Earlier · A venture, end to end</div>
+    <h1 class="page-h1" data-i18n="page.h1">From a cold email to a signed contract — and a <em>deliberate</em> shutdown.</h1>
+    <p class="lede" data-i18n="page.lede">An AI esports-scouting venture I ran end to end. It taught me what product-market fit actually costs — and gave me the confidence to keep going.</p>
+    <div class="facts">
+      <div class="fact">
+        <span class="fact-label" data-i18n="fact.role.label">My role</span>
+        <span class="fact-value" data-i18n="fact.role.value">Go-to-market &amp; partnerships</span>
+      </div>
+      <div class="fact">
+        <span class="fact-label" data-i18n="fact.high.label">High-water mark</span>
+        <span class="fact-value" data-i18n="fact.high.value">Signed with Fnatic's CS2 team</span>
+      </div>
+      <div class="fact">
+        <span class="fact-label" data-i18n="fact.end.label">How it ended</span>
+        <span class="fact-value" data-i18n="fact.end.value">Shut down on purpose</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="bio">
+    <div class="bio-grid">
+      <div class="bio-label" data-i18n="s1.label">01 / The opening</div>
+      <div>
+        <p data-i18n="s1.p1">The whole motion was pure go-to-market. I took one alumni connection and kept pulling the thread — from an amateur player, to a semi-pro, to a retired coach, and finally to the manager-level gateway of China's top-three clubs, where we reached a preliminary partnership.</p>
+        <p data-i18n="s1.p2">Then I cold-reached out to <strong>Fnatic</strong> — one of the most storied organizations in esports — and got a reply straight from their general manager. We went on to sign a <strong>technical-cooperation agreement with Fnatic's CS2 team</strong>. No warm intro, no fund behind me. Just the thread, pulled patiently, all the way to the top.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bio">
+    <div class="bio-grid">
+      <div class="bio-label" data-i18n="s2.label">02 / The idea</div>
+      <div>
+        <p data-i18n="s2.p1">The product was a bet on <strong>VLM technology</strong>: treat a professional player's style of play as a kind of fingerprint, then scan ordinary players at scale to surface the rare ones whose play <em>matches</em> a pro's. Talent discovery by match-degree — finding the next prodigy hiding in the ladder.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bio">
+    <div class="bio-grid">
+      <div class="bio-label" data-i18n="s3.label">03 / The wall</div>
+      <div>
+        <p data-i18n="s3.p1">It didn't survive contact with reality. Technically, we couldn't get our hands on enough professional match demos to train the model — and there was no clean way to pull ordinary players' demo files in real time to screen them. Even with the data, the precision the idea demanded was hard to reach.</p>
+        <p data-i18n="s3.p2">The vision was grand. Reality broke it one constraint at a time — which, I've learned, is exactly how grand visions tend to go.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifesto-block">
+    <div class="manifesto-grid">
+      <div></div>
+      <div>
+        <p class="manifesto" data-i18n="m.title">Product-market fit is a balance of three things — and a venture dies when any one of them gives way.</p>
+        <p class="manifesto-sub" data-i18n="m.sub">What the technology can <em>actually</em> do — not what you fantasize it can. What the market on the ground <em>actually</em> allows — is the data even there, and can you get it. And how big the prize <em>actually</em> is. We walked out with real product insight CS2 teams wanted — but it didn't transfer, and a single-title CS2 market was too small to carry a company. So we killed it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bio">
+    <div class="bio-grid">
+      <div class="bio-label" data-i18n="s4.label">04 / What it gave me</div>
+      <div>
+        <p data-i18n="s4.p1">It was the first time I really dealt with the world outside a classroom — and I came away surprised by how open most people are to new technology and new business. The alumni thread held the whole way up; the conversations with Fnatic went smoothly. That gave me real confidence.</p>
+        <p data-i18n="s4.p2">It also taught me the discipline that now runs underneath everything I build: <strong>kill the things that won't carry a company, and go looking for the ones with real ground under them.</strong> That search — for something with landability, not just a grand story — is what led to Iterant.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="next">
+    <div class="next-grid">
+      <div class="bio-label" data-i18n="next.label">Where it led</div>
+      <div>
+        <h2 class="next-h2" data-i18n="next.h2">This is why I now build for <em>landability</em>, not for the pitch.</h2>
+        <div class="cta-row">
+          <a class="cta-btn" href="/intent/" data-i18n="next.cta1">Read the intent thesis →</a>
+          <a class="cta-ghost" href="/" data-i18n="next.cta2">← Back to home</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span data-i18n="footer.left">© 2026 Lingchong Hu · Philadelphia</span>
+    <span data-i18n="footer.right">Set in Fraunces &amp; Inter Tight</span>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  const T = {
+    'document.title': { en: "Esports Scouting — a venture, end to end — Lingchong Hu", zh: "电竞选材 —— 一桩生意,从头到尾 — 胡凌冲" },
+
+    'nav.home':    { en: 'Home',       zh: '首页' },
+    'nav.thesis':  { en: 'The Thesis', zh: '核心论点' },
+    'nav.work':    { en: 'Work',       zh: '履历' },
+    'nav.contact': { en: 'Contact',    zh: '联系' },
+
+    'page.eyebrow': { en: 'Earlier · A venture, end to end', zh: '更早 · 一桩生意,从头到尾' },
+    'page.h1': {
+      en: "From a cold email to a signed contract — and a <em>deliberate</em> shutdown.",
+      zh: '从一封冷邮件,到一纸签约——再到一次<em>主动</em>关停。'
+    },
+    'page.lede': {
+      en: "An AI esports-scouting venture I ran end to end. It taught me what product-market fit actually costs — and gave me the confidence to keep going.",
+      zh: '一桩我从头跑到尾的 AI 电竞选材生意。它教会了我 PMF 真正的代价,也给了我继续做下去的底气。'
+    },
+
+    'fact.role.label':  { en: 'My role',         zh: '我的角色' },
+    'fact.role.value':  { en: 'Go-to-market & partnerships', zh: '市场拓展 & 合作' },
+    'fact.high.label':  { en: 'High-water mark',  zh: '最高水位' },
+    'fact.high.value':  { en: "Signed with Fnatic's CS2 team", zh: '与 Fnatic CS2 战队签约' },
+    'fact.end.label':   { en: 'How it ended',     zh: '怎么收的场' },
+    'fact.end.value':   { en: 'Shut down on purpose', zh: '主动关停' },
+
+    's1.label': { en: '01 / The opening', zh: '01 / 开局' },
+    's1.p1': {
+      en: "The whole motion was pure go-to-market. I took one alumni connection and kept pulling the thread — from an amateur player, to a semi-pro, to a retired coach, and finally to the manager-level gateway of China's top-three clubs, where we reached a preliminary partnership.",
+      zh: '整条线是纯粹的市场打法。我顺着一个校友连接,一路把线往下扯——从一个业余选手,到半职业,到一位退役教练,最后扯到了国内御三家俱乐部的经理门户,谈成了初步合作。'
+    },
+    's1.p2': {
+      en: "Then I cold-reached out to <strong>Fnatic</strong> — one of the most storied organizations in esports — and got a reply straight from their general manager. We went on to sign a <strong>technical-cooperation agreement with Fnatic's CS2 team</strong>. No warm intro, no fund behind me. Just the thread, pulled patiently, all the way to the top.",
+      zh: '然后我冷邮件联系了 <strong>Fnatic</strong>——电竞史上最有分量的战队之一——拿到了他们总经理的亲自回复。我们最终和 <strong>Fnatic 的 CS2 战队签下了一纸技术合作协议</strong>。没有熟人引荐,身后也没有基金。只有一条线,被耐心地一路扯到了顶。'
+    },
+
+    's2.label': { en: '02 / The idea', zh: '02 / 点子' },
+    's2.p1': {
+      en: "The product was a bet on <strong>VLM technology</strong>: treat a professional player's style of play as a kind of fingerprint, then scan ordinary players at scale to surface the rare ones whose play <em>matches</em> a pro's. Talent discovery by match-degree — finding the next prodigy hiding in the ladder.",
+      zh: '产品是一次对 <strong>VLM 技术</strong>的下注:把职业选手的打法风格当成一种指纹,再去规模化地扫描海量路人玩家,从中捞出那些打法与职业选手高度<em>吻合</em>的稀有天赋。用"匹配度"来选材——把藏在天梯里的下一个天才找出来。'
+    },
+
+    's3.label': { en: '03 / The wall', zh: '03 / 那堵墙' },
+    's3.p1': {
+      en: "It didn't survive contact with reality. Technically, we couldn't get our hands on enough professional match demos to train the model — and there was no clean way to pull ordinary players' demo files in real time to screen them. Even with the data, the precision the idea demanded was hard to reach.",
+      zh: '它没能熬过和现实的碰撞。技术上,我们根本拿不到足够多的职业比赛 demo 来训练模型——也没有一条干净的路子,能实时地把普通玩家的 demo 文件抓下来做筛选。就算有了数据,这个点子要求的那种精准度,也很难达到。'
+    },
+    's3.p2': {
+      en: "The vision was grand. Reality broke it one constraint at a time — which, I've learned, is exactly how grand visions tend to go.",
+      zh: '愿景很宏大。而现实,把它一个约束一个约束地击碎了——后来我才明白,宏大的愿景,大抵都是这么碎的。'
+    },
+
+    'm.title': {
+      en: "Product-market fit is a balance of three things — and a venture dies when any one of them gives way.",
+      zh: 'PMF 是三件事之间的平衡——任何一件塌了,这桩生意就活不成。'
+    },
+    'm.sub': {
+      en: "What the technology can <em>actually</em> do — not what you fantasize it can. What the market on the ground <em>actually</em> allows — is the data even there, and can you get it. And how big the prize <em>actually</em> is. We walked out with real product insight CS2 teams wanted — but it didn't transfer, and a single-title CS2 market was too small to carry a company. So we killed it.",
+      zh: '技术<em>实际</em>能做到什么——而不是你幻想它能做到什么。落地的市场<em>实际</em>允许什么——数据到底在不在,你拿不拿得到。以及,这块奖赏<em>实际</em>有多大。我们最后拿到了 CS2 战队真正想要的产品洞察——但它不可复制,而单一 CS2 这个市场,太小,撑不起一家公司。所以我们把它关停了。'
+    },
+
+    's4.label': { en: '04 / What it gave me', zh: '04 / 它给了我什么' },
+    's4.p1': {
+      en: "It was the first time I really dealt with the world outside a classroom — and I came away surprised by how open most people are to new technology and new business. The alumni thread held the whole way up; the conversations with Fnatic went smoothly. That gave me real confidence.",
+      zh: '这是我第一次真正地、在课堂之外和这个社会打交道——而最让我意外的,是大多数人对新技术、新商机的接受度其实相当高。校友那条线一路往上都很顺;和 Fnatic 的沟通也很顺。这些给了我实实在在的信心。'
+    },
+    's4.p2': {
+      en: "It also taught me the discipline that now runs underneath everything I build: <strong>kill the things that won't carry a company, and go looking for the ones with real ground under them.</strong> That search — for something with landability, not just a grand story — is what led to Iterant.",
+      zh: '它也教会了我那条如今贯穿我所有事的纪律:<strong>把撑不起一家公司的东西果断关掉,再去找那些脚下有真实土壤的方向。</strong>正是这场寻找——找一个有落地性、而不只是有宏大叙事的东西——把我带到了 Iterant。'
+    },
+
+    'next.label': { en: 'Where it led', zh: '它通向哪里' },
+    'next.h2': {
+      en: "This is why I now build for <em>landability</em>, not for the pitch.",
+      zh: '这就是为什么,我现在做的东西,是冲着<em>落地性</em>去的,不是冲着 pitch。'
+    },
+    'next.cta1': { en: 'Read the intent thesis →', zh: '读 intent 的核心论点 →' },
+    'next.cta2': { en: '← Back to home',          zh: '← 回到首页' },
+
+    'footer.left':  { en: '© 2026 Lingchong Hu · Philadelphia', zh: '© 2026 胡凌冲 · 费城' },
+    'footer.right': { en: 'Set in Fraunces & Inter Tight', zh: '排印:Fraunces & Inter Tight' }
+  };
+
+  function applyLang(lang) {
+    if (lang !== 'en' && lang !== 'zh') lang = 'en';
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    document.title = T['document.title'][lang];
+
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      if (T[k] && T[k][lang] != null) el.innerHTML = T[k][lang];
+    });
+
+    document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+      btn.setAttribute('aria-pressed', String(btn.getAttribute('data-lang-btn') === lang));
+    });
+
+    try { localStorage.setItem('site.lang', lang); } catch (e) {}
+  }
+
+  function detectInitial() {
+    try {
+      var saved = localStorage.getItem('site.lang');
+      if (saved === 'en' || saved === 'zh') return saved;
+    } catch (e) {}
+    var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+    return nav.indexOf('zh') === 0 ? 'zh' : 'en';
+  }
+
+  document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      applyLang(btn.getAttribute('data-lang-btn'));
+    });
+  });
+
+  applyLang(detectInitial());
+})();
+</script>
+
+</body>
+</html>
