@@ -237,16 +237,17 @@
   .hero-headline {
     font-family: var(--serif);
     font-weight: 300;
-    font-size: clamp(48px, 7vw, 92px);
-    line-height: 1.02;
+    /* 标题字数变多后调小一档，控制在 3 行以内 */
+    font-size: clamp(34px, 4.8vw, 62px);
+    line-height: 1.12;
     letter-spacing: -0.02em;
     margin-bottom: 48px;
-    max-width: 14ch;
+    max-width: 24ch;
     opacity: 0;
     animation: fadeUp 1s ease-out 0.4s forwards;
   }
 
-  html[lang^="zh"] .hero-headline { max-width: 16ch; line-height: 1.15; }
+  html[lang^="zh"] .hero-headline { max-width: 20ch; line-height: 1.28; }
 
   .hero-headline em {
     font-style: italic;
@@ -692,7 +693,6 @@
     <div class="mark"><img class="avatar" src="/bear.svg" alt="" width="32" height="32" /><span>Lingchong Hu · 胡凌冲</span></div>
     <nav>
       <a href="/about/" data-i18n="nav.about">About</a>
-      <a href="/intent/" data-i18n="nav.thesis">The Thesis</a>
       <a href="#work" data-i18n="nav.work">Work</a>
       <a href="#contact" data-i18n="nav.contact">Contact</a>
       <span class="lang-toggle" role="group" aria-label="Language">
@@ -705,8 +705,8 @@
   <!-- HERO -->
   <section class="hero">
     <h1 class="hero-eyebrow" data-i18n="hero.eyebrow">Lingchong Hu — Founder · Builder · Philadelphia</h1>
-    <h2 class="hero-headline" data-i18n="hero.h1">The bottleneck of AI isn't answers. It's <em>intent</em>.</h2>
-    <p class="hero-lede" data-i18n="hero.lede"><a href="/intent/" class="hero-link">Read the thesis →</a> &nbsp;·&nbsp; <a href="/intent/demo/" class="hero-link">Watch the demo →</a></p>
+    <h2 class="hero-headline" data-i18n="hero.h1">Deep in your industry? Let's talk AI — you name the need, we ship the <em>working product</em>.</h2>
+    <p class="hero-lede" data-i18n="hero.lede"><a href="/intent/demo/" class="hero-link">Watch the demo →</a></p>
     <div class="hero-meta">
       <div class="hero-meta-item">
         <span class="label" data-i18n="hero.currently.label">Currently</span>
@@ -731,7 +731,7 @@
   <section class="block" id="built">
     <div class="section-header">
       <div class="section-number" data-i18n="sec.02.number">01 — Proof of work</div>
-      <h2 class="section-title" data-i18n="sec.02.title">Talk is the cheapest it has ever been. So I <em>build</em>.</h2>
+      <h2 class="section-title" data-i18n="sec.02.title">AI <em>deployment</em> demos from real industries — and AI demos for everyday <em>life</em>.</h2>
     </div>
 
     <div class="now-grid">
@@ -749,7 +749,7 @@
   <section class="block" id="work">
     <div class="section-header">
       <div class="section-number" data-i18n="sec.03.number">02 — Selected work</div>
-      <h2 class="section-title" data-i18n="sec.03.title">A short, <em>honest</em> ledger.</h2>
+      <h2 class="section-title" data-i18n="sec.03.title">A short <em>résumé</em>.</h2>
     </div>
 
     <div class="experience-grid">
@@ -782,6 +782,15 @@
             <p class="exp-org" data-i18n="exp.3.org">University of Pennsylvania</p>
             <p class="exp-body" data-i18n="exp.3.body">Coursework across databases, AI, and big-data analytics — including CIS 5500, CIS 521, CIS 5450. STEM-designated; the formal training I needed to stop being a "non-technical founder" in any conversation that mattered.</p>
             <p class="exp-note" data-i18n="exp.3.note">Outside the classroom: hackathons, Penn's startup &amp; VC community, and a deliberate habit of connecting alumni — the network that later opened real doors.</p>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-period" data-i18n="exp.4.period">2022 — 23</div>
+          <div>
+            <h3 class="exp-role" data-i18n="exp.4.role">Personal Research Assistant to the Dean</h3>
+            <p class="exp-org" data-i18n="exp.4.org">USC Annenberg School for Communication and Journalism</p>
+            <p class="exp-body" data-i18n="exp.4.body">Day-to-day support for the Dean: organizing research materials and preparing for meetings, keeping the minutes, and debriefing the academic reasoning afterwards.</p>
           </div>
         </div>
 
@@ -849,12 +858,12 @@
       zh: '胡凌冲 — 创始人 · 建造者 · 费城'
     },
     'hero.h1': {
-      en: "The bottleneck of AI isn't answers. It's <em>intent</em>.",
-      zh: 'AI 的瓶颈不是答案,是<em>意图</em>。'
+      en: "Deep in your industry? Let's talk AI — you name the need, we ship the <em>working product</em>.",
+      zh: '想和各行各业深耕的朋友,聊聊 AI 的潜力——你们提出需求,我们交付<em>落地产品</em>。'
     },
     'hero.lede': {
-      en: '<a href="/intent/" class="hero-link">Read the thesis →</a> &nbsp;·&nbsp; <a href="/intent/demo/" class="hero-link">Watch the demo →</a>',
-      zh: '<a href="/intent/" class="hero-link">读核心论点 →</a> &nbsp;·&nbsp; <a href="/intent/demo/" class="hero-link">看现场 demo →</a>'
+      en: '<a href="/intent/demo/" class="hero-link">Watch the demo →</a>',
+      zh: '<a href="/intent/demo/" class="hero-link">看现场 demo →</a>'
     },
     'hero.currently.label': { en: 'Currently',  zh: '当前' },
     'hero.currently.value': { en: 'Founder, Iterant AI', zh: '创始人，Iterant AI' },
@@ -865,7 +874,7 @@
     'hero.based.value':     { en: 'Philadelphia, PA', zh: '美国 费城' },
 
     'sec.02.number': { en: '01 — Proof of work', zh: '01 — 做出来的东西' },
-    'sec.02.title':  { en: 'Talk is the cheapest it has ever been. So I <em>build</em>.', zh: '说话从没像现在这么廉价过。所以我<em>动手做</em>。' },
+    'sec.02.title':  { en: 'AI <em>deployment</em> demos from real industries — and AI demos for everyday <em>life</em>.', zh: '产业内的 AI <em>落地演示</em>,以及 AI <em>生活产品</em> demo。' },
 
     'built.statlabel': {
       en: 'interactive AI prototypes · clickable, not screenshots',
@@ -881,7 +890,7 @@
     },
 
     'sec.03.number': { en: '02 — Selected work', zh: '02 — 履历精选' },
-    'sec.03.title':  { en: 'A short, <em>honest</em> ledger.', zh: '一份简短而<em>诚实</em>的账。' },
+    'sec.03.title':  { en: 'A short <em>résumé</em>.', zh: '一份<em>简短</em>的履历。' },
 
     'exp.1.period': { en: '2025 — now', zh: '2025 — 至今' },
     'exp.1.role':   { en: 'Founder & CEO', zh: '创始人 & CEO' },
@@ -913,6 +922,14 @@
     'exp.3.note': {
       en: "Outside the classroom: hackathons, Penn's startup & VC community, and a deliberate habit of connecting alumni — the network that later opened real doors.",
       zh: '课堂之外：打黑客松、加入宾大创投圈子，并刻意地去连接校友资源 —— 正是这张网，后来真的敲开了门。'
+    },
+
+    'exp.4.period': { en: '2022 — 23', zh: '2022 — 23' },
+    'exp.4.role':   { en: 'Personal Research Assistant to the Dean', zh: '传媒学院院长个人研究助理 (RA)' },
+    'exp.4.org':    { en: 'USC Annenberg School for Communication and Journalism', zh: '南加州大学 (USC) 传媒学院' },
+    'exp.4.body': {
+      en: "Day-to-day support for the Dean: organizing research materials and preparing for meetings, keeping the minutes, and debriefing the academic reasoning afterwards.",
+      zh: '每天帮院长做材料整理与会前准备,负责会议记录,并在会后一起复盘学术思路。'
     },
 
     'work.more': {
@@ -959,7 +976,7 @@
       if (saved === 'en' || saved === 'zh') return saved;
     } catch (e) {}
     var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-    return nav.indexOf('zh') === 0 ? 'zh' : 'en';
+    return nav.indexOf('zh') === 0 ? 'zh' : 'en';   // 中文浏览器→中文，其它→英文
   }
 
   document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {

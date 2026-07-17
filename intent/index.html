@@ -6,7 +6,9 @@
 <title>The Thesis — Lingchong Hu</title>
 <meta name="description" content="The intent layer: the bottleneck of AI isn't answers, it's intent. Lingchong Hu (胡凌冲), founder of Iterant AI, on the most under-built surface in AI." />
 <meta name="author" content="Lingchong Hu" />
-<meta name="robots" content="index, follow" />
+<!-- 文章暂时下线：直接跳回首页。要重新上线，删掉 refresh 这行并把 robots 改回 index, follow -->
+<meta http-equiv="refresh" content="0; url=/" />
+<meta name="robots" content="noindex" />
 <meta name="keywords" content="Lingchong Hu, 胡凌冲, Iterant AI, intent layer, input layer, AI thesis, founder" />
 <link rel="canonical" href="https://lingchonghu.com/intent/" />
 
@@ -513,7 +515,7 @@
       if (saved === 'en' || saved === 'zh') return saved;
     } catch (e) {}
     var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-    return nav.indexOf('zh') === 0 ? 'zh' : 'en';
+    return nav.indexOf('zh') === 0 ? 'zh' : 'en';   // 中文浏览器→中文，其它→英文
   }
 
   document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
