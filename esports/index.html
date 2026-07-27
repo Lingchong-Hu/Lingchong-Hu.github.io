@@ -424,6 +424,10 @@
 (function () {
   const T = {
     'document.title': { en: "Esports Scouting — a venture, end to end — Lingchong Hu", zh: "电竞 Scouting —— 一桩生意,从头到尾 — 胡凌冲" },
+    'meta.description': {
+      en: "An AI esports-scouting venture, run end to end — from a cold email to a signed contract with Fnatic's CS2 team, to a deliberate shutdown. What it taught me about product-market fit. By Lingchong Hu (胡凌冲).",
+      zh: "一个从头跑到尾的 AI 电竞 scouting 生意——从一封冷邮件，到与 Fnatic CS2 战队签约，再到一次主动关停。它教会了我 PMF 的真正代价。作者：胡凌冲（Lingchong Hu）。"
+    },
 
     'nav.home':    { en: 'Home',       zh: '首页' },
     'nav.thesis':  { en: 'The Thesis', zh: '核心论点' },
@@ -508,6 +512,9 @@
     if (lang !== 'en' && lang !== 'zh') lang = 'en';
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
     document.title = T['document.title'][lang];
+
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && T['meta.description']) metaDesc.setAttribute('content', T['meta.description'][lang]);
 
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var k = el.getAttribute('data-i18n');

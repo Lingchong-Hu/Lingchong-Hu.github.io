@@ -454,6 +454,10 @@
       en: "About Lingchong Hu — Founder, Iterant AI",
       zh: "关于胡凌冲 — Iterant AI 创始人"
     },
+    'meta.description': {
+      en: "About Lingchong Hu (胡凌冲): founder of Iterant AI, Penn MCIT '25, based in Philadelphia. Building the intent layer for AI.",
+      zh: "关于胡凌冲（Lingchong Hu）：Iterant AI 创始人，宾大 MCIT '25，常驻美国费城。建造 AI 的意图层。"
+    },
 
     'nav.home':       { en: 'Home',       zh: '首页' },
     'nav.principles': { en: 'Principles', zh: '理念' },
@@ -511,6 +515,9 @@
     if (lang !== 'en' && lang !== 'zh') lang = 'en';
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
     document.title = T['document.title'][lang];
+
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && T['meta.description']) metaDesc.setAttribute('content', T['meta.description'][lang]);
 
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var k = el.getAttribute('data-i18n');

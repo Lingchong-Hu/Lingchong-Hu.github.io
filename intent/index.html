@@ -415,6 +415,10 @@
 (function () {
   const T = {
     'document.title': { en: "The Thesis — Lingchong Hu", zh: "核心论点 — 胡凌冲" },
+    'meta.description': {
+      en: "The intent layer: the bottleneck of AI isn't answers, it's intent. Lingchong Hu (胡凌冲), founder of Iterant AI, on the most under-built surface in AI.",
+      zh: "意图层：AI 的瓶颈不是答案，是意图。Iterant AI 创始人胡凌冲（Lingchong Hu），谈 AI 里最未被建造的一片表面。"
+    },
 
     'nav.home':    { en: 'Home',    zh: '首页' },
     'nav.work':    { en: 'Work',    zh: '履历' },
@@ -495,6 +499,9 @@
     if (lang !== 'en' && lang !== 'zh') lang = 'en';
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
     document.title = T['document.title'][lang];
+
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc && T['meta.description']) metaDesc.setAttribute('content', T['meta.description'][lang]);
 
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var k = el.getAttribute('data-i18n');
