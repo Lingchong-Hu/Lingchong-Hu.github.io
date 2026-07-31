@@ -974,22 +974,24 @@
       btn.setAttribute('aria-pressed', String(btn.getAttribute('data-lang-btn') === lang));
     });
 
-    try { localStorage.setItem('site.lang', lang); } catch (e) {}
   }
 
+  /* 语言默认:手动选择 > 中国时区→中文 > 英文(navigator.language 不再参与) */
   function detectInitial() {
-    try {
-      var saved = localStorage.getItem('site.lang');
-      if (saved === 'en' || saved === 'zh') return saved;
-    } catch (e) {}
-    var nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-    return nav.indexOf('zh') === 0 ? 'zh' : 'en';   // 中文浏览器→中文，其它→英文
+    try{ var s = localStorage.getItem('site.lang'); if(s==='en'||s==='zh') return s; }catch(e){}
+    try{
+      var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone) || '';
+      if(/^Asia\/(Shanghai|Urumqi|Chongqing|Harbin|Kashgar|Hong_Kong|Macau|Taipei)$/i.test(tz)) return 'zh';
+    }catch(e){}
+    return 'en';
   }
 
   document.querySelectorAll('[data-lang-btn]').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
-      applyLang(btn.getAttribute('data-lang-btn'));
+      var lang = btn.getAttribute('data-lang-btn');
+      try { localStorage.setItem('site.lang', lang); } catch (e) {}
+      location.reload();
     });
   });
 
